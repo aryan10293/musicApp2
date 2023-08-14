@@ -19,7 +19,7 @@ export const AsideLeft = () => {
     React.useEffect(() => {
         const fetchData = async () => {
             try {
-            const response = await fetch(`htts://localhost:2014/checkuser/${localStorage.getItem('loginUser')}`, {
+            const response = await fetch(`http://localhost:2014/checkuser/${localStorage.getItem('loginUser')}`, {
                 method: 'GET',
                 credentials: 'include',
             });
