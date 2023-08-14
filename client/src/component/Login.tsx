@@ -45,7 +45,6 @@ function Login() {
     return (
     
         <div className="auth-modal">
-            <div className="close-icon" >ⓧ</div>
 
             <h2>Login</h2>
             <form  onSubmit={handleSubmit}>
@@ -73,7 +72,7 @@ function Login() {
             Don't have an account?{''}
             <Link 
             to="/register" 
-            className='text-blue-700'
+            className='text-purple-700'
             >
               Sign Up
             </Link>

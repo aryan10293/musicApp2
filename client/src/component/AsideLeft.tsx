@@ -1,8 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineHome, AiFillHome  } from "react-icons/ai";
-import { MdOutlineExplore, MdExplore, MdFavoriteBorder } from "react-icons/md";
-import { FaRegUser, FaUser, FaSignOutAlt } from "react-icons/fa";
-import { MdMessage } from 'react-icons/md';
+import { MdOutlineExplore, MdExplore } from "react-icons/md";
+import {  FaSignOutAlt } from "react-icons/fa";
 import React from "react";
 export const AsideLeft = () => {
         const [user,setUser] = React.useState<People>()

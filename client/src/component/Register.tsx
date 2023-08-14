@@ -40,7 +40,6 @@ function Register() {
     return (
     
         <div className="auth-modal">
-            <div className="close-icon" >ⓧ</div>
 
             <h2>Sign Up</h2>
             <form  onSubmit={handleClick}>
@@ -74,7 +73,7 @@ function Register() {
             <hr/>
             <h2 >
             Have An Account?{' '}
-            <Link to="/" className='text-blue-700'>
+            <Link to="/" className='text-purple-700'>
               login!
             </Link>
           </h2>
