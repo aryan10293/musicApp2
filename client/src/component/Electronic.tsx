@@ -22,13 +22,13 @@ function Electronic() {
   return (
     <div className='flex'>
       <AsideLeft />
-      <main className='container'>
-        <header className='flex'>
+      <main className='container m-15'>
+        <header className='flex justify-between '>
             <div>
-                <h1 className='trending-h1'>Trending</h1>
+                <h1 className='h1-trending text-purple-700'>Trending</h1>
             </div>
                 <ul className='flex justify-center items-center'>
-                    <li className='trending-li'>
+                    <li className=' trending-li'>
                         <Link to='/dashboard' > All Genres</Link>
                     </li>
                     <li className='selected-li trending-li'>
@@ -38,7 +38,7 @@ function Electronic() {
                         <Link to='/hiphoprap'>HipHop-Rap</Link>
                     </li>
                     <li className='trending-li'>
-                        <Link to='alternative'>Alternative</Link>
+                        <Link to='/alternative'>Alternative</Link>
                     </li>
                 </ul>
         </header>
