@@ -195,3 +195,45 @@
 
   z-index: 9;
 }
+.header{
+  margin: 60px 0 0px 8px;
+}
+.header-aside{
+  margin-top: 80px;
+}
+.header-aside a{
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 46px;
+}
+
+.idkidk{
+  background-color: #7E1BCC;
+  color: white;
+}
+
+.icant{
+  height: 20vh;
+  background-color: white;
+}
+.youdont{
+  background-color: #F3F0F7;
+  height: 70vh;
+}
+
+.playlist {
+  margin-bottom: 16px;
+  height: 144px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px #E3E3E3, 0 1px 0 rgba(133, 129, 153, 0.25), 0 0 1px rgba(133, 129, 153, .1);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  --border-width: 1px;
+  background: white;
+  border: 1px solid #f2f4f2;
+  border-radius: 8px 8px 0 0;
+  cursor: pointer;
+  display: inline-flex;
+  position: relative;
+  width: 100%;
+}
