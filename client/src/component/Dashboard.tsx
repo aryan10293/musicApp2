@@ -23,12 +23,42 @@ function Dashboard() {
             }
         }
 
-        fetchData();
     }, []);
 
-    const handleClick = (e:any) => {
-        console.log(e.target.innerHTML)
+    const handleClick = async (e:any) => {
+        let timePeriod = e.target.innerHTML
+        console.log(timePeriod)
+        if(timePeriod === 'This week'){
+            timePeriod = 'week'
+        } else if(timePeriod === 'This month'){
+            timePeriod = 'month'
+        } else if(timePeriod === 'All time') {
+            timePeriod = 'allTime'
+        } else if(timePeriod === 'This year') {
+            timePeriod = 'year'
+        }
+        try {
+            const response = await fetch(`https://discoveryprovider.audius.co/v1/tracks/trending?time=${timePeriod}`, {
+                method: 'GET',
+            });
+
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log(data)
+            setData(data)
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
     }
+    const myStyle = {
+        top: '161px',
+        left: '76px',
+        width: '110px',
+        transform: 'scale(1, 1)',
+    };
   return (
     <div className='flex'>
       <AsideLeft />
@@ -54,9 +84,10 @@ function Dashboard() {
         </header>
         <section className='time-container'>
             <ul className='flex'>
-                <li onClick={handleClick}>this week</li>
-                <li onClick={handleClick}>this month</li>
-                <li onClick={handleClick}>all time</li>
+                <div className='selected-lol '></div>
+                <li className='time-li' onClick={handleClick}><div className='time-div selected-time' style={myStyle}><div>This week</div></div></li>
+                <li className='time-li' onClick={handleClick}><div className='time-div'><div>This month</div></div></li>
+                <li className='time-li' onClick={handleClick}><div className='time-div'>All time</div></li>
             </ul>
         </section>
       </main>

@@ -159,8 +159,39 @@
   padding: 15px;
   margin: 0 30px;
 }
+.time-div{
+  align-items: center;
+  cursor: pointer;
+  transition: all .18s ease-in-out;
+  -webkit-user-select: none;
+  user-select: none;
+  color: #c2c0cc;
+  flex-direction: row;
+  font-size: 17px;
+  font-weight: var(--font-heavy);
+  justify-content: center;
+  letter-spacing: .66px;
+  margin-right: 16px;
+  min-height: 32px;
+  min-width: 110px;
+  padding: 0 8px 4px;
+  color: #858199;
+}
+
+.time-li{
+  display: flex;
+  height: 100%;
+}
 
 
+.selected-time{
+  color: #6d6d6d;
+  border-bottom: solid 3px #CC0FE0;
+}
+.selected-lol {
+  background-color: #CC0FE0;
+  border-radius: 0 0 20px 20px;
+  height: 3px;
 
-
-
+  z-index: 9;
+}
