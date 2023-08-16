@@ -1,6 +1,7 @@
 import React from 'react'
 import { AsideLeft } from './AsideLeft'
 import { Link } from 'react-router-dom';
+import { FaCrown } from 'react-icons/fa';
 function Dashboard() {
     const [data, setData] = React.useState<any>()
 
@@ -16,8 +17,7 @@ function Dashboard() {
                 }
 
                 const data = await response.json();
-                console.log(data)
-                setData(data)
+                setData([...data.data])
             } catch (error) {
                 console.error('Fetch error:', error);
             }
@@ -48,7 +48,6 @@ function Dashboard() {
             }
 
             const data = await response.json();
-            console.log(data)
             setData(data)
         } catch (error) {
             console.error('Fetch error:', error);
@@ -60,6 +59,9 @@ function Dashboard() {
         width: '110px',
         transform: 'scale(1, 1)',
     };
+    if (data) {
+    console.log(data[0]);
+}
   return (
     <div className='flex'>
       <AsideLeft />
@@ -94,22 +96,32 @@ function Dashboard() {
             </section>           
         </div>
         <div className='icant'></div>
-        <section className='youdont'> 
-            <div className='flex justify-between idkidk'>
+        <section className='youdont section-track '> 
+            <div className='flex justify-between idkidk banner'>
                 <div>$Audio Rewards</div>
                 <div>Top Five Tracks Each Week Win $Audio</div>
                 <div>LEARN MORE -&gt;</div>
             </div>
 
-            <ul>
-                <li>
+            <ol>
+                <li className='li-track'>
                     <div>
                         <div className='playlist'>
-                            keep working on box
+                            <div className='numberDiv flex flex-col'> 
+                                <FaCrown />
+                                1
+                            </div>
+                            <div className='artwork-li'>
+                                <div className='idkwhattocallthisdiv'>
+                                    { data ? (
+                                        <img src={data[0].artwork['150x150']} alt="idk what im doing" />
+                                    ) : null }
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>
-            </ul>
+            </ol>
       </section>
       </main>
     </div>

@@ -222,7 +222,6 @@
 }
 
 .playlist {
-  margin-bottom: 16px;
   height: 144px;
   border-radius: 8px;
   box-shadow: 0 2px 5px #E3E3E3, 0 1px 0 rgba(133, 129, 153, 0.25), 0 0 1px rgba(133, 129, 153, .1);
@@ -231,9 +230,57 @@
   --border-width: 1px;
   background: white;
   border: 1px solid #f2f4f2;
-  border-radius: 8px 8px 0 0;
   cursor: pointer;
   display: inline-flex;
   position: relative;
   width: 100%;
+}
+.numberDiv{
+  align-items: center;
+  color: #AAA7B8;
+  display: flex;
+  flex: 0 0 32px;
+  font-size: 16px;
+  font-weight: 700;
+  justify-content: center;
+  position: relative;
+}
+.li-track{
+  background: white;
+  border-radius: 8px;
+}
+ol, ol li{
+  width: 100%;
+}
+.section-track{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 30px;
+}
+
+.banner{
+  align-items: center;
+  background: #7E1BCC;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  padding: 9px 34px;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  transition: all .18s;
+  width: 100%;
+  margin: 20px;
+}
+.idkwhattocallthisdiv{
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.idkwhattocallthisdiv img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
