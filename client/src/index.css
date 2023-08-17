@@ -275,12 +275,79 @@ ol, ol li{
 }
 .idkwhattocallthisdiv{
   max-width: 100%;
-  overflow: hidden;
 }
 
 .idkwhattocallthisdiv img{
-  max-width: 100%;
+  width: 90%;
   height: auto;
   display: block;
-  margin: 0 auto;
+  margin: 10px;
+  border-radius: 8px;
+  height: 125px
+
+}
+.maintrackcontent{
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.timeofsong{
+  text-align: right;
+}
+.timeofsong p{
+  font-size: 12px;
+  color: #C2C0CC;
+}
+.artistofsong{
+  text-align: left;
+  color: #C2C0CC;
+  transition: color 0.3s;
+}
+.titleofsong{
+  text-align: left;
+  color: #858199;
+  transition: color 0.3s;
+}
+.titleofsong:hover,
+.artistofsong:hover{
+  color: #7E1BCC;
+  text-decoration: underline;
+}
+.dataofsong{
+  color: #C2C0CC;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.line{
+  height: .5px;
+  background-color: #C2C0CC;
+  width: 100%;
+  margin: 5px 0 0 0;
+}
+.heartreposticon {
+  color: #C2C0CC;
+  margin-right: 5px;
+  transition: color 0.3s;
+  display: inline;
+
+}
+.heartreposticon:hover{
+  color: #7E1BCC;
+}
+.activtybuttons{
+  text-align: left;
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto 0;
+}
+.icons{
+  
+  color: #C2C0CC;
+  margin-right: 15px;
+  transition: color 0.3s;
 }

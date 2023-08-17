@@ -2,6 +2,10 @@ import React from 'react'
 import { AsideLeft } from './AsideLeft'
 import { Link } from 'react-router-dom';
 import { FaCrown } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRetweet, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FaShare } from 'react-icons/fa';
 function Dashboard() {
     const [data, setData] = React.useState<any>()
 
@@ -118,6 +122,43 @@ function Dashboard() {
                                     ) : null }
                                 </div>
                             </div>
+                            <div className="maintrackcontent">
+                                <div className="timeofsong">    
+                                    {data ? (
+                                        <p>{Math.floor(data[0].duration/60)}:{data[0].duration%60}</p>
+                                    ) : null}
+                                </div>
+                                <div className='titleofsong'>
+                                    {data ? (
+                                        <Link to={data[0].permalink}>{data[0].title}</Link>
+                                    ) : null}
+                                </div>   
+                                <div className='artistofsong'>
+                                    {data ? (
+                                        <Link to={data[0].permalink}>{data[0].user.handle}</Link>
+                                    ) : null}
+                                </div>
+                                <div className='dataofsong'>
+                                    {data ? (
+                                        <>
+                                            <div >
+                                                <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {(data[0]['repost_count'] / 1000).toFixed(2)}K Repost </span></div>
+                                                {' '}
+                                                <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {(data[0]['favorite_count'] / 1000).toFixed(1)}K Favorites </span></div>
+                                            </div>
+                                            <div>
+                                                <p>{(data[0]['play_count'] / 1000).toFixed(1)}K Plays</p>
+                                            </div>
+                                        </>
+                                    ) : null}
+                                </div>   
+                                <div className='line'></div>   
+                                <div className='activtybuttons'>
+                                    <FontAwesomeIcon icon={faRetweet}  className='icons'/>
+                                    <FontAwesomeIcon icon={faHeart} className='icons'/>
+                                    <FontAwesomeIcon icon={faShare} className='icons'/>
+                                </div>                                                        
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -129,3 +170,6 @@ function Dashboard() {
 }
 
 export default Dashboard
+// const seconds = 350; // Replace this with the number of seconds you have
+// const minutes = Math.floor(seconds / 60); // Get the whole minutes
+// const remainingSeconds = seconds % 60
