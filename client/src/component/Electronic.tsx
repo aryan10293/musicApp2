@@ -7,7 +7,7 @@ function Electronic() {
     React.useEffect(() => {
         async function fetchData(){
             try {
-                const response = await fetch(`https://discoveryprovider.audius.co/v1/tracks/trending?app_name=drejmusicapp`, {
+                const response = await fetch(`https://discoveryprovider.audius.co/v1/tracks/trending?genre=${"electronic"}&time=${'week'}`, {
                     method: 'GET',
                 })
                 const data = await response.json()

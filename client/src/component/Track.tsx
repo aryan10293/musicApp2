@@ -18,7 +18,7 @@ function Track(props:any) {
         <div>
             <div className='playlist'>
                 <div className='numberDiv flex flex-col'> 
-                {props.timing === 'week' && props.number <= 5 ?  <FaCrown /> : null}
+                {props.crown && props.number <= 5 ?  <FaCrown /> : null}
                 {props.number}
                 </div>
                 <div className='artwork-li'>

@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 import Track from './Track';
 function Dashboard() {
     const [data, setData] = React.useState<any>()
+    const [isActiveWeek, setIsActiveWeek] = React.useState<boolean>(false);
+    const [isActiveMonth, setIsActiveMonth] = React.useState<boolean>(false);
+    const [isActiveAllTime, setIsActiveAllTime] = React.useState<boolean>(true);
+    const genre: boolean = true
     React.useEffect(() => {
         async function fetchData() {
             try {
@@ -29,10 +33,19 @@ function Dashboard() {
         console.log(time)
         if(time === 'This week'){
             time = 'week'
+            setIsActiveWeek(true)
+            setIsActiveMonth(false)
+            setIsActiveAllTime(false)
         } else if(time === 'This month'){
             time = 'month'
+            setIsActiveWeek(false)
+            setIsActiveMonth(true)
+            setIsActiveAllTime(false)
         } else if(time === 'All time') {
             time = 'allTime'
+            setIsActiveWeek(false)
+            setIsActiveMonth(false)
+            setIsActiveAllTime(true)
         }
         try {
             const response = await fetch(`https://discoveryprovider.audius.co/v1/tracks/trending?time=${time}`, {
@@ -44,7 +57,6 @@ function Dashboard() {
             }
 
             const data = await response.json();
-            alert(`displaying ${time}`)
             setData([...data.data])
         } catch (error) {
             console.error('Fetch error:', error);
@@ -59,6 +71,9 @@ function Dashboard() {
     if (data) {
     console.log(data[0]);
 }
+const isWeekActive = isActiveWeek ? 'selected-time': null
+const isMonthActive = isActiveMonth ? 'selected-time': null
+const isAllTimeActive = isActiveAllTime ? 'selected-time': null
   return (
     <div className='flex'>
       <AsideLeft />
@@ -85,20 +100,22 @@ function Dashboard() {
             </header>
             <section className='time-container'>
                 <ul className='flex section-ul'>
-                    <div className='selected-lol '></div>
-                    <li className='time-li' onClick={handleClick}><div className='time-div selected-time' style={myStyle}><div>This week</div></div></li>
-                    <li className='time-li' onClick={handleClick}><div className='time-div'><div>This month</div></div></li>
-                    <li className='time-li' onClick={handleClick}><div className='time-div'>All time</div></li>
+                    
+                    <li className='time-li' onClick={handleClick}><div className={`time-div ${isWeekActive}`} style={myStyle}><div>This week</div></div></li>
+                    <li className='time-li' onClick={handleClick}><div className={`time-div ${isMonthActive}`} ><div>This month</div></div></li>
+                    <li className='time-li' onClick={handleClick}><div className={`time-div ${isAllTimeActive}`}>All time</div></li>
                 </ul>
             </section>           
         </div>
         <div className='icant'></div>
         <section className='youdont section-track '> 
-            <div className='flex justify-between idkidk banner'>
-                <div>$Audio Rewards</div>
-                <div>Top Five Tracks Each Week Win $Audio</div>
-                <div>LEARN MORE -&gt;</div>
-            </div>
+            {isActiveWeek ? (
+                <div className='flex justify-between idkidk banner'>
+                    <div>$Audio Rewards</div>
+                    <div>Top Five Tracks Each Week Win $Audio</div>
+                    <div>LEARN MORE -&gt;</div>
+                </div>               
+            ) : null}
             <ol>
                 {data && data !== null ? (
                     data.map((song:any, i:number ): JSX.Element => {
@@ -107,6 +124,7 @@ function Dashboard() {
                         return (
                             <Track 
                             number={i + 1}
+                            crown={isActiveWeek && genre ? true : false}
                             artwork={song.artwork["150x150"]}
                             timeOfSong={`${Math.floor(song.duration/60)}:${song.duration%60}`}
                             artistofsong={song.user.handle}
