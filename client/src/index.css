@@ -357,3 +357,14 @@ ol, ol li{
   color: #7E1BCC;
   transform: scale(1.1);
 }
+
+.main-div{
+  width: 75%;
+}
+
+.header-div{
+  margin-bottom: 10px;
+}
+.section-ul{
+  margin-bottom: -20px;
+}

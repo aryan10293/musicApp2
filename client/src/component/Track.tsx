@@ -5,7 +5,6 @@ import { FaCrown } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 function Track(props:any) {
-    console.log(props)
 //     artwork={data[0].artwork["150x150"]}
 //     timing={'alltime'}
 //     timeOfSong={`${Math.floor(data[0].duration/60)}:${data[0].duration%60}`}
@@ -19,8 +18,8 @@ function Track(props:any) {
         <div>
             <div className='playlist'>
                 <div className='numberDiv flex flex-col'> 
-                    <FaCrown />
-                    {props.number}
+                {props.timing === 'week' && props.number <= 5 ?  <FaCrown /> : null}
+                {props.number}
                 </div>
                 <div className='artwork-li'>
                     <div className='idkwhattocallthisdiv'>
