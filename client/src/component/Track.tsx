@@ -39,12 +39,12 @@ function Track(props:any) {
                     <div className='dataofsong'>
                     <>
                         <div >
-                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {props.repostCount}K Repost </span></div>
+                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {props.repostCount} Repost</span></div>
                             {' '}
-                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {props.favoriteCount}K Favorites </span></div>
+                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {props.favoriteCount} Favorites </span></div>
                         </div>
                         <div>
-                            <p>{props.plays}K Plays</p>
+                            <p>{props.plays} Plays</p>
                         </div>
                     </>
                     </div>   

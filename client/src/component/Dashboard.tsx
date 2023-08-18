@@ -120,18 +120,47 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                 {data && data !== null ? (
                     data.map((song:any, i:number ): JSX.Element => {
                         //a bunch of if statements abouta go here
+                        let repost;
+                        let favorites;
+                        let plays;
+                        const seconds = song.duration;
+                        const minutes = Math.floor(seconds / 60);
+                        const remainingSeconds = seconds % 60;
 
+                        const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+                        if(i === 5){
+                            console.log(song)
+                        }
+                        if(song['repost_count'] <= 999){
+                            repost = song['repost_count']
+                        } else{
+                            repost = `${(song['repost_count'] / 1000).toFixed(2)}K`
+                        }
+
+                        if(song['favorite_count'] <= 999){
+                            favorites = song['favorite_count']
+                        } else{
+                            favorites = `${(song['favorite_count'] / 1000).toFixed(1)}K`
+                        }  
+
+                        if(song['play'] <= 999){
+                            plays = song['play_count']
+                        } else{
+                            plays = `${(song['play_count'] / 1000).toFixed(1)}K`
+                        } 
+                        
+                        let name = song.user.handle.split('').map((x:string) => x === '_' ? ' ': x).join('')
                         return (
                             <Track 
                             number={i + 1}
                             crown={isActiveWeek && genre ? true : false}
                             artwork={song.artwork["150x150"]}
-                            timeOfSong={`${Math.floor(song.duration/60)}:${song.duration%60}`}
-                            artistofsong={song.user.handle}
+                            timeOfSong={formattedTime}
+                            artistofsong={name}
                             artistLink={song.permalink}
-                            repostCount={(song['repost_count'] / 1000).toFixed(2)}
-                            favoriteCount={(song['favorite_count'] / 1000).toFixed(1)}
-                            plays={(song['play_count'] / 1000).toFixed(1)}
+                            repostCount={repost}
+                            favoriteCount={favorites}
+                            plays={plays}
                             title={song.title}
                             />                         
                         )
