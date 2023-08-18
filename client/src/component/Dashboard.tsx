@@ -1,11 +1,7 @@
 import React from 'react'
 import { AsideLeft } from './AsideLeft'
 import { Link } from 'react-router-dom';
-import { FaCrown } from 'react-icons/fa';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRetweet, faShare } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { FaShare } from 'react-icons/fa';
+import Track from './Track';
 function Dashboard() {
     const [data, setData] = React.useState<any>()
 
@@ -106,62 +102,23 @@ function Dashboard() {
                 <div>Top Five Tracks Each Week Win $Audio</div>
                 <div>LEARN MORE -&gt;</div>
             </div>
-
             <ol>
-                <li className='li-track'>
-                    <div>
-                        <div className='playlist'>
-                            <div className='numberDiv flex flex-col'> 
-                                <FaCrown />
-                                1
-                            </div>
-                            <div className='artwork-li'>
-                                <div className='idkwhattocallthisdiv'>
-                                    { data ? (
-                                        <img src={data[0].artwork['150x150']} alt="idk what im doing" />
-                                    ) : null }
-                                </div>
-                            </div>
-                            <div className="maintrackcontent">
-                                <div className="timeofsong">    
-                                    {data ? (
-                                        <p>{Math.floor(data[0].duration/60)}:{data[0].duration%60}</p>
-                                    ) : null}
-                                </div>
-                                <div className='titleofsong'>
-                                    {data ? (
-                                        <Link to={data[0].permalink}>{data[0].title}</Link>
-                                    ) : null}
-                                </div>   
-                                <div className='artistofsong'>
-                                    {data ? (
-                                        <Link to={data[0].permalink}>{data[0].user.handle}</Link>
-                                    ) : null}
-                                </div>
-                                <div className='dataofsong'>
-                                    {data ? (
-                                        <>
-                                            <div >
-                                                <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {(data[0]['repost_count'] / 1000).toFixed(2)}K Repost </span></div>
-                                                {' '}
-                                                <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {(data[0]['favorite_count'] / 1000).toFixed(1)}K Favorites </span></div>
-                                            </div>
-                                            <div>
-                                                <p>{(data[0]['play_count'] / 1000).toFixed(1)}K Plays</p>
-                                            </div>
-                                        </>
-                                    ) : null}
-                                </div>   
-                                <div className='line'></div>   
-                                <div className='activtybuttons'>
-                                    <FontAwesomeIcon icon={faRetweet}  className='icons'/>
-                                    <FontAwesomeIcon icon={faHeart} className='icons'/>
-                                    <FontAwesomeIcon icon={faShare} className='icons'/>
-                                </div>                                                        
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                {data.map((song:any, i:number ): JSX.Element => {
+                    return (
+                        <Track 
+                        number={i + 1}
+                        artwork={song.artwork["150x150"]}
+                        timing={'alltime'}
+                        timeOfSong={`${Math.floor(song.duration/60)}:${song.duration%60}`}
+                        artistofsong={song.user.handle}
+                        artistLink={song.permalink}
+                        repostCount={(song['repost_count'] / 1000).toFixed(2)}
+                        favoriteCount={(song['favorite_count'] / 1000).toFixed(1)}
+                        plays={(song['play_count'] / 1000).toFixed(1)}
+                        title={song.title}
+                        />                         
+                    )
+                })}
             </ol>
       </section>
       </main>
