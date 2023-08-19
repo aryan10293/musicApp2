@@ -20,6 +20,7 @@ function Dashboard() {
                 }
 
                 const data = await response.json();
+                 console.log(data)
                 setData([...data.data])
             } catch (error) {
                 console.error('Fetch error:', error);
@@ -68,9 +69,6 @@ function Dashboard() {
         width: '110px',
         transform: 'scale(1, 1)',
     };
-    if (data) {
-    console.log(data[0]);
-}
 const isWeekActive = isActiveWeek ? 'selected-time': null
 const isMonthActive = isActiveMonth ? 'selected-time': null
 const isAllTimeActive = isActiveAllTime ? 'selected-time': null
@@ -128,9 +126,6 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                         const remainingSeconds = seconds % 60;
 
                         const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-                        if(i === 5){
-                            console.log(song)
-                        }
                         if(song['repost_count'] <= 999){
                             repost = song['repost_count']
                         } else{
