@@ -5,14 +5,33 @@ import { FaCrown } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 function Track(props:any) {
-//     artwork={data[0].artwork["150x150"]}
-//     timing={'alltime'}
-//     timeOfSong={`${Math.floor(data[0].duration/60)}:${data[0].duration%60}`}
-//     artistofsong={data[0].user.handle}
-//     artistLink={data[0].permalink}
-//     repostCount={(data[0]['repost_count'] / 1000).toFixed(2)}
-//     favoriteCount={(data[0]['favorite_count'] / 1000).toFixed(1)}
-//     plays={(data[0]['play_count'] / 1000).toFixed(1)}
+    const user = localStorage.getItem('loginUser')
+    const [userLikes, setUserLikes] = React.useState<string[]>([])
+    const handleClick = async (e: any) => {
+        let  id = e.currentTarget.dataset.id;
+        console.log(id)
+        const action: string = userLikes?.includes(id || '') ? 'unlike' : 'like';
+        console.log(action)
+        try {
+                const response = await fetch(`http://localhost:2014/${action}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({id, user})
+                    })
+                const data = await response.json()
+            } catch (error) {
+                console.log(error)
+            }
+            console.log(action)
+        if(action === 'like'){
+        if (id) {
+            setUserLikes([...userLikes, id]);
+        }
+        } else {
+        let newList = userLikes.filter(x => x !== id )
+            setUserLikes(newList)
+        }
+    }
  return (
     <li className='li-track'>
         <div>
@@ -51,7 +70,7 @@ function Track(props:any) {
                     <div className='line'></div>   
                     <div className='activtybuttons'>
                         <FontAwesomeIcon icon={faRetweet}  className='icons'/>
-                        <FontAwesomeIcon icon={faHeart} className='icons'/>
+                        <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons'/>
                         <FontAwesomeIcon icon={faShare} className='icons'/>
                     </div>                                                        
                 </div>

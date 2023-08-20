@@ -153,6 +153,7 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                         let name = song.user.handle.split('').map((x:string) => x === '_' ? ' ': x).join('')
                         return (
                             <Track 
+                            id={song.id}
                             number={i + 1}
                             crown={isActiveWeek && genre ? true : false}
                             artwork={song.artwork["150x150"]}

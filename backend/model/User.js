@@ -12,7 +12,6 @@ const UserSchema = new mongoose.Schema({
   password: {type: String, required: true},
   bio: {type: String, default: ''} ,
   websiteLink: {type: String,  default: ''},
-  img: {type: String,  default: 'https://s-media-cache-ak0.pinimg.com/736x/dd/6f/40/dd6f403a57b73215b5be860bd397ec34.jpg'}
 });
 
 // Password hash middleware.

@@ -29,6 +29,23 @@ function Dashboard() {
         fetchData()
 
     }, []);
+    const user = localStorage.getItem('loginUser')
+    const [userLikes, setUserLikes] = React.useState<string[]>([])
+    React.useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`http://localhost:2014/checkuser/${user}`, {
+                    method: 'GET',
+                    headers: {'Content-Type': 'application/json'},
+                    })
+                const data = await response.json()
+                console.log(data[0].likes)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData()
+    })
     const handleClick = async (e:any) => {
          let time  = e.target.innerHTML
         console.log(time)
@@ -147,6 +164,7 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                         let name = song.user.handle.split('').map((x:string) => x === '_' ? ' ': x).join('')
                         return (
                             <Track 
+                            id={song.id}
                             number={i + 1}
                             crown={isActiveWeek && genre ? true : false}
                             artwork={song.artwork["150x150"]}
