@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 function Track(props:any) {
     const user = localStorage.getItem('loginUser')
-    const [userLikes, setUserLikes] = React.useState<string[]>([])
+    const [userLikes, setUserLikes] = React.useState<string[]>(props.likes)
     const handleClick = async (e: any) => {
         let  id = e.currentTarget.dataset.id;
         console.log(id)

@@ -18,9 +18,9 @@ function App() {
             path="/register"
             element={ <RegisterDisplay />  } />
 
-          <Route 
-            path="/dashboard"
-            element={ <DashboardDisplay />  } />
+            <Route
+              path="/dashboard"
+              element={<DashboardDisplay />} />
 
           <Route 
             path="/electronic"
