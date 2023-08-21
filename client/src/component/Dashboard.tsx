@@ -41,6 +41,7 @@ function Dashboard() {
 
                 const data = await response.json();
                 setData([...data.data])
+                console.log([...data.data][0])
             } catch (error) {
                 console.error('Fetch error:', error);
             }

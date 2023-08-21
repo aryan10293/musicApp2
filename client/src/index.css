@@ -220,6 +220,7 @@
   background-color: #F3F0F7;
   height: 70vh;
   overflow-y: auto;
+  width: 100%;
 }
 
 .playlist {
@@ -373,4 +374,10 @@ ol, ol li{
 }
 .section-ul{
   margin-bottom: -20px;
+}
+
+.explore-section{
+  background-color: white;
+  height: 100%;
+  padding: 20px;
 }

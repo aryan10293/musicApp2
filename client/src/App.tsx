@@ -7,6 +7,7 @@ import DashboardDisplay from './pages/DashboardDisplay';
 import ElectronicDisplay from './pages/ElectronicDisplay';
 import HiphopDisplay from './pages/HiphopDisplay';
 import AlternativeDisplay from './pages/AlternativeDisplay';
+import ExploreDisplay from './pages/ExploreDisplay';
 function App() {
   return (
       <Routes>
@@ -33,6 +34,10 @@ function App() {
           <Route 
             path="/alternative"
             element={ <AlternativeDisplay />  } />
+
+          <Route 
+            path="/explore"
+            element={ <ExploreDisplay />  } />            
       </Routes>
   );
 }

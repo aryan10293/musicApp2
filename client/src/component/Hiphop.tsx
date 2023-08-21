@@ -8,6 +8,26 @@ function Hiphop() {
     const [isActiveMonth, setIsActiveMonth] = React.useState<boolean>(false);
     const [isActiveAllTime, setIsActiveAllTime] = React.useState<boolean>(true);
     const genre: boolean = false
+    const [likes, setLikes] = React.useState<string[]>([])
+    React.useState(() => {
+        const fetchData = async() => {
+            try {
+                const response = await fetch(`http://localhost:2014/checkuser/${localStorage.getItem('loginUser')}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                if(response.ok){
+                    const data = await response.json()
+                    setLikes(data[0].likes)
+                }
+            } catch (error) {
+                console.error(error) 
+            }
+        }
+
+        fetchData()
+    })
     React.useEffect(() => {
         async function fetchData() {
             try {
@@ -153,6 +173,7 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                         let name = song.user.handle.split('').map((x:string) => x === '_' ? ' ': x).join('')
                         return (
                             <Track 
+                            likes={likes}
                             id={song.id}
                             number={i + 1}
                             crown={isActiveWeek && genre ? true : false}
