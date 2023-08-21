@@ -8,7 +8,7 @@ function Dashboard() {
     const [isActiveMonth, setIsActiveMonth] = React.useState<boolean>(false);
     const [isActiveAllTime, setIsActiveAllTime] = React.useState<boolean>(true);
     const genre: boolean = true
-        const [likes, setLikes] = React.useState<string[]>([])
+    const [likes, setLikes] = React.useState<string[]>([])
     React.useState(() => {
         const fetchData = async() => {
             try {
@@ -40,7 +40,6 @@ function Dashboard() {
                 }
 
                 const data = await response.json();
-                 console.log(data)
                 setData([...data.data])
             } catch (error) {
                 console.error('Fetch error:', error);
@@ -49,42 +48,6 @@ function Dashboard() {
         fetchData()
 
     }, []);
-  React.useState(() => {
-    const fetchData = async() => {
-        try {
-            const response = await fetch(`http://localhost:2014/checkuser/${localStorage.getItem('loginUser')}`, {
-                method: 'GET',
-                credentials: 'include',
-            });
-
-            if(response.ok){
-                const data = await response.json()
-                setUserLikes(data[0].likes)
-            }
-        } catch (error) {
-            console.error(error) 
-        }
-    }
-
-    fetchData()
-})
-    const user = localStorage.getItem('loginUser')
-    const [userLikes, setUserLikes] = React.useState<string[]>([])
-    React.useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(`http://localhost:2014/checkuser/${user}`, {
-                    method: 'GET',
-                    headers: {'Content-Type': 'application/json'},
-                    })
-                const data = await response.json()
-                console.log(data[0].likes)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchData()
-    })
     const handleClick = async (e:any) => {
          let time  = e.target.innerHTML
         console.log(time)
@@ -128,6 +91,7 @@ function Dashboard() {
 const isWeekActive = isActiveWeek ? 'selected-time': null
 const isMonthActive = isActiveMonth ? 'selected-time': null
 const isAllTimeActive = isActiveAllTime ? 'selected-time': null
+console.log(likes)
   return (
     <div className='flex'>
       <AsideLeft />

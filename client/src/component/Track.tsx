@@ -32,6 +32,7 @@ function Track(props:any) {
             setUserLikes(newList)
         }
     }
+    
  return (
     <li className='li-track'>
         <div>
@@ -70,7 +71,11 @@ function Track(props:any) {
                     <div className='line'></div>   
                     <div className='activtybuttons'>
                         <FontAwesomeIcon icon={faRetweet}  className='icons'/>
+                        {userLikes.includes(props.id) ? (
+                            <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons liked'/>
+                        ) : (
                         <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons'/>
+                        )}
                         <FontAwesomeIcon icon={faShare} className='icons'/>
                     </div>                                                        
                 </div>

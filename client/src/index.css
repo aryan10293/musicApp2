@@ -357,6 +357,12 @@ ol, ol li{
   color: #7E1BCC;
   transform: scale(1.1);
 }
+.liked{
+  color:#7E1BCC
+}
+.liked:hover{
+  color: #C2C0CC;
+}
 
 .main-div{
   width: 75%;
