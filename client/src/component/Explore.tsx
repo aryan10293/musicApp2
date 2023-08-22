@@ -1,6 +1,7 @@
 import React from 'react'
 import { AsideLeft } from './AsideLeft'
 import { FaCrown } from 'react-icons/fa'
+import { Link } from 'react-router-dom';
 function Explore() {
   const trendingStyle = {
     boxShadow: 'rgba(87, 170, 255, 0.35) 0px 2px 8px -2px',
@@ -22,7 +23,7 @@ function Explore() {
                         <p className='text-grey-700'>Content curated for you based on your likes,reposts, and follows. Refreshes often so if you like a track, favorite it.</p>
                     </div>
 
-                    <section className='trending-big-card card ' style={trendingStyle}>
+                   <Link to='trendingplaylist'> <section className='trending-big-card card ' style={trendingStyle}>
                         <div>
                             <h2>Trending playlist</h2>
                             <p>The top playlist of Audius right now</p>
@@ -30,7 +31,7 @@ function Explore() {
                         <div className='rewards'>
                             <p><FaCrown className='inline mt-auto mb-auto'/>$Audius Rewards</p>
                         </div>
-                    </section>
+                    </section></Link>
                 </section>
 
             </main>

@@ -8,6 +8,7 @@ import ElectronicDisplay from './pages/ElectronicDisplay';
 import HiphopDisplay from './pages/HiphopDisplay';
 import AlternativeDisplay from './pages/AlternativeDisplay';
 import ExploreDisplay from './pages/ExploreDisplay';
+import TredningPlaylistDisp from './pages/TredningPlaylistDisp';
 function App() {
   return (
       <Routes>
@@ -37,7 +38,11 @@ function App() {
 
           <Route 
             path="/explore"
-            element={ <ExploreDisplay />  } />            
+            element={ <ExploreDisplay />  } />
+
+          <Route 
+          path="/explore/trendingplaylist"
+          element={ <TredningPlaylistDisp />  } />            
       </Routes>
   );
 }
