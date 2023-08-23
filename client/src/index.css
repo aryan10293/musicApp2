@@ -224,19 +224,19 @@
 }
 
 .playlist {
-  height: 144px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px #E3E3E3, 0 1px 0 rgba(133, 129, 153, 0.25), 0 0 1px rgba(133, 129, 153, .1);
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
   --border-width: 1px;
   background: white;
-  border: 1px solid #f2f4f2;
   cursor: pointer;
   display: inline-flex;
   position: relative;
   width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px #E3E3E3, 0 1px 0 rgba(133, 129, 153, 0.25), 0 0 1px rgba(133, 129, 153, .1);
+  border: 1px solid #f2f4f2;
 }
+
 .numberDiv{
   align-items: center;
   color: #AAA7B8;
@@ -387,4 +387,21 @@ main section div p{
 }
 .width-style{
   width: 100%;
+}
+.empty-div{
+  width: 5%;
+}
+
+.lebronjames{
+    -webkit-transform: scaleX(1);
+      transform: scaleX(1);
+      --border-width: 1px;
+      background: white;
+      cursor: pointer;
+      display: inline-flex;
+      position: relative;
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px #E3E3E3, 0 1px 0 rgba(133, 129, 153, 0.25), 0 0 1px rgba(133, 129, 153, .1);
+      border: 1px solid #f2f4f2;
 }

@@ -3,6 +3,7 @@ import { AsideLeft } from './AsideLeft'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet, faShare } from '@fortawesome/free-solid-svg-icons';
+import { FaCrown } from 'react-icons/fa';
 function TrendingPlay() {
     const [data,setData] = React.useState<any[]>()
     const [isActive, setIsActive] = React.useState<boolean>(false)
@@ -58,56 +59,62 @@ function TrendingPlay() {
                 </div>
                 <li className={`li-track ${widthStyle}`}>
                     <div>
-                        <div className='playlist'>
-                            <div className='artwork-li'>
-                                <div className='idkwhattocallthisdiv'>
-                                    <img src={'props.artwork'} alt="idk what im doing" />
+                        {/* {you have to add a boolen to the p} */}
+                        <div className='lebronjames flex-col'>
+                            <div className=' flex '>
+                                <div className='numberDiv flex flex-col'> 
+                                    <FaCrown /> 
+                                    1
                                 </div>
-                            </div>
-                            <div className="maintrackcontent">
-                                <div className="timeofsong">    
-                                    <p>{'props.timeOfSong'}</p>
+                                <div className='artwork-li'>
+                                    <div className='idkwhattocallthisdiv'>
+                                        <img src={'https://tse2.mm.bing.net/th?id=OIP.X3OaS2xgmh60owB5jw2HhwHaGL&pid=Api&P=0&h=220'} alt="idk what im doing" />
+                                    </div>
                                 </div>
-                                <div className='titleofsong'>
-                                    <Link to={'/props.artistLink'}>{'thegoat'}</Link>
-                                </div>   
-                                <div className='artistofsong'>
-                                    <Link to={'props.artistLink'}>{'lebron'}</Link>
+                                <div className="maintrackcontent">
+                                    <div className="timeofsong">    
+                                        <p>{'props.timeOfSong'}</p>
+                                    </div>
+                                    <div className='titleofsong'>
+                                        <Link to={'/props.artistLink'}>{'thegoat'}</Link>
+                                    </div>   
+                                    <div className='artistofsong'>
+                                        <Link to={'props.artistLink'}>{'lebron'}</Link>
+                                    </div>
+                                    <div className='dataofsong'>
+                                    <>
+                                        <div >
+                                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {123} Repost</span></div>
+                                            {' '}
+                                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {123} Favorites </span></div>
+                                        </div>
+                                        <div>
+                                            <p>{123} Plays</p>
+                                        </div>
+                                    </>
+                                    </div>   
+                                    <div className='line'></div>   
+                                    <div className='activtybuttons'>
+                                        <FontAwesomeIcon icon={faRetweet}  className='icons'/>
+                                        {true ? (
+                                            <FontAwesomeIcon icon={faHeart}  data-id={123} className='icons liked'/>
+                                        ) : (
+                                        <FontAwesomeIcon icon={faHeart}   className='icons'/>
+                                        )}
+                                        <FontAwesomeIcon icon={faShare} className='icons'/>
+                                    </div>                                                    
+                                </div>    
+                            </div> 
+                            <div className='playlist-track flex' onMouseOver={handleMouseOver}onMouseOut={handleMouseOut}>
+                                {isActive ? <img src={'https://tse2.mm.bing.net/th?id=OIP.X3OaS2xgmh60owB5jw2HhwHaGL&pid=Api&P=0&h=220'} alt="idk what im doing" className='empty-div bg-red-700'></img> : <span className='empty-div bg-white-700'></span>}
+                                <div className='flex justify-between'>
+                                    <div className='number'>1 <span>lebron james<span> by travis scott</span></span></div>
+                                    <div className='playlist-track-time'>4:23</div>
                                 </div>
-                                <div className='dataofsong'>
-                                <>
-                                    <div >
-                                        <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {123} Repost</span></div>
-                                        {' '}
-                                        <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {123} Favorites </span></div>
-                                    </div>
-                                    <div>
-                                        <p>{123} Plays</p>
-                                    </div>
-                                </>
-                                </div>   
-                                <div className='line'></div>   
-                                <div className='activtybuttons'>
-                                    <FontAwesomeIcon icon={faRetweet}  className='icons'/>
-                                    {true ? (
-                                        <FontAwesomeIcon icon={faHeart}  data-id={123} className='icons liked'/>
-                                    ) : (
-                                    <FontAwesomeIcon icon={faHeart}   className='icons'/>
-                                    )}
-                                    <FontAwesomeIcon icon={faShare} className='icons'/>
-                                </div>   
-
-                                <div>
-                                    <div className='playlist-track flex justify-between '
-                                    onMouseOver={handleMouseOver}
-                                    onMouseOut={handleMouseOut}
-                                    >
-                                        <div className='number'>1 <span>lebron james<span> by travis scott</span></span></div>
-                                        <div className='playlist-track-time'>4:23</div>
-                                    </div>
-                                </div>                                                 
-                            </div>
+                            </div>                                                  
                         </div>
+                        <div>
+                        </div>   
                     </div>
                 </li>
             </main>
@@ -118,3 +125,4 @@ function TrendingPlay() {
 
 export default TrendingPlay
 //https://blockchange-audius-discovery-01.bdnodes.net/v1/playlists/MY00Y3j/tracks?app_name=EXAMPLEAPP
+
