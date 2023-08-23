@@ -8,6 +8,7 @@ function Electronic() {
     const [isActiveMonth, setIsActiveMonth] = React.useState<boolean>(false);
     const [isActiveAllTime, setIsActiveAllTime] = React.useState<boolean>(true);
     const genre: boolean = false
+    const isPlaylist: boolean = false
     const [likes, setLikes] = React.useState<string[]>([])
     React.useState(() => {
         const fetchData = async() => {
@@ -172,7 +173,8 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                         let name = song.user.handle.split('').map((x:string) => x === '_' ? ' ': x).join('')
                         return (
                             <Track 
-                            likes={likes}
+                                playlist={isPlaylist}
+                                likes={likes}
                                 id={song.id}
                                 number={i + 1}
                                 crown={isActiveWeek && genre ? true : false}

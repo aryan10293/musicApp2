@@ -251,6 +251,7 @@
   background: white;
   border-radius: 8px;
   margin-bottom: 10px;
+  list-style: none;
 }
 ol, ol li{
   width: 100%;

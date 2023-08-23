@@ -5,6 +5,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet, faShare } from '@fortawesome/free-solid-svg-icons';
 function TrendingPlay() {
     const [data,setData] = React.useState<any[]>()
+    const [isActive, setIsActive] = React.useState<boolean>(false)
+    const handleMouseOver = () => {
+        setIsActive(true);
+        
+    };
+
+    const handleMouseOut = () => {
+        setIsActive(false);
+    };
     React.useEffect(() => {
         const fetchData = async () => {
            try {
@@ -86,7 +95,17 @@ function TrendingPlay() {
                                     <FontAwesomeIcon icon={faHeart}   className='icons'/>
                                     )}
                                     <FontAwesomeIcon icon={faShare} className='icons'/>
-                                </div>                                                        
+                                </div>   
+
+                                <div>
+                                    <div className='playlist-track flex justify-between '
+                                    onMouseOver={handleMouseOver}
+                                    onMouseOut={handleMouseOut}
+                                    >
+                                        <div className='number'>1 <span>lebron james<span> by travis scott</span></span></div>
+                                        <div className='playlist-track-time'>4:23</div>
+                                    </div>
+                                </div>                                                 
                             </div>
                         </div>
                     </div>
@@ -98,3 +117,4 @@ function TrendingPlay() {
 }
 
 export default TrendingPlay
+//https://blockchange-audius-discovery-01.bdnodes.net/v1/playlists/MY00Y3j/tracks?app_name=EXAMPLEAPP

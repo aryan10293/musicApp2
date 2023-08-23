@@ -76,7 +76,12 @@ function Track(props:any) {
                         <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons'/>
                         )}
                         <FontAwesomeIcon icon={faShare} className='icons'/>
-                    </div>                                                        
+                    </div>  
+                    {props.playlist ? (
+                        <div>
+                            this is where eveything will be
+                        </div>
+                    ) : null }                                                 
                 </div>
             </div>
         </div>
