@@ -8,6 +8,7 @@ function Dashboard() {
     const [isActiveMonth, setIsActiveMonth] = React.useState<boolean>(false);
     const [isActiveAllTime, setIsActiveAllTime] = React.useState<boolean>(true);
     const genre: boolean = true
+    const isPlaylist: boolean = false
     const [likes, setLikes] = React.useState<string[]>([])
     React.useState(() => {
         const fetchData = async() => {
@@ -168,18 +169,19 @@ console.log(likes)
                         let name = song.user.handle.split('').map((x:string) => x === '_' ? ' ': x).join('')
                         return (
                             <Track 
-                            likes={likes}
-                            id={song.id}
-                            number={i + 1}
-                            crown={isActiveWeek && genre ? true : false}
-                            artwork={song.artwork["150x150"]}
-                            timeOfSong={formattedTime}
-                            artistofsong={name}
-                            artistLink={song.permalink}
-                            repostCount={repost}
-                            favoriteCount={favorites}
-                            plays={plays}
-                            title={song.title}
+                                playlist={isPlaylist}
+                                likes={likes}
+                                id={song.id}
+                                number={i + 1}
+                                crown={isActiveWeek && genre ? true : false}
+                                artwork={song.artwork["150x150"]}
+                                timeOfSong={formattedTime}
+                                artistofsong={name}
+                                artistLink={song.permalink}
+                                repostCount={repost}
+                                favoriteCount={favorites}
+                                plays={plays}
+                                title={song.title}
                             />                         
                         )
                     })

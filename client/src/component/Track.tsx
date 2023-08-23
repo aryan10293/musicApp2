@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { FaCrown } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-
+import PlaylistTrack from './PlaylistTrack'
 function Track(props:any) {
     const user = localStorage.getItem('loginUser')
     const [userLikes, setUserLikes] = React.useState<string[]>(props.likes)
@@ -35,55 +35,55 @@ function Track(props:any) {
  return (
     <li className='li-track'>
         <div>
-            <div className='playlist'>
-                <div className='numberDiv flex flex-col'> 
-                {props.crown && props.number <= 5 ?  <FaCrown /> : null}
-                {props.number}
-                </div>
-                <div className='artwork-li'>
-                    <div className='idkwhattocallthisdiv'>
-                        <img src={props.artwork} alt="idk what im doing" />
+            <div className='lebronjames flex-col'>
+            <div className='numberDiv flex'> 
+                <div className="flex flex-col ml-2">
+                    {props.crown && props.number <= 5 ?  <FaCrown /> : null}
+                    {props.number}
                     </div>
-                </div>
-                <div className="maintrackcontent">
-                    <div className="timeofsong">    
-                        <p>{props.timeOfSong}</p>
-                    </div>
-                    <div className='titleofsong'>
-                        <Link to={props.artistLink}>{props.title}</Link>
-                    </div>   
-                    <div className='artistofsong'>
-                        <Link to={props.artistLink}>{props.artistofsong}</Link>
-                    </div>
-                    <div className='dataofsong'>
-                    <>
-                        <div >
-                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {props.repostCount} Repost</span></div>
-                            {' '}
-                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {props.favoriteCount} Favorites </span></div>
+                    <div className='artwork-li'>
+                        <div className='idkwhattocallthisdiv'>
+                            <img src={props.artwork} alt="idk what im doing" />
                         </div>
-                        <div>
-                            <p>{props.plays} Plays</p>
+                    </div>
+                    <div className="maintrackcontent">
+                        <div className="timeofsong">    
+                            <p>{props.timeOfSong}</p>
                         </div>
-                    </>
-                    </div>   
-                    <div className='line'></div>   
-                    <div className='activtybuttons'>
-                        <FontAwesomeIcon icon={faRetweet}  className='icons'/>
-                        {userLikes.includes(props.id) ? (
-                            <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons liked'/>
-                        ) : (
-                        <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons'/>
-                        )}
-                        <FontAwesomeIcon icon={faShare} className='icons'/>
+                        <div className='titleofsong'>
+                            <Link to={props.artistLink}>{props.title}</Link>
+                        </div>   
+                        <div className='artistofsong'>
+                            <Link to={props.artistLink}>{props.artistofsong}</Link>
+                        </div>
+                        <div className='dataofsong'>
+                        <>
+                            <div >
+                                <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {props.repostCount} Repost</span></div>
+                                {' '}
+                                <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {props.favoriteCount} Favorites </span></div>
+                            </div>
+                            <div>
+                                <p>{props.plays} Plays</p>
+                            </div>
+                        </>
+                        </div>   
+                        <div className='line'></div>   
+                        <div className='activtybuttons'>
+                            <FontAwesomeIcon icon={faRetweet}  className='icons'/>
+                            {userLikes.includes(props.id) ? (
+                                <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons liked'/>
+                            ) : (
+                            <FontAwesomeIcon icon={faHeart} onClick={handleClick} data-id={props.id} className='icons'/>
+                            )}
+                            <FontAwesomeIcon icon={faShare} className='icons'/>
+                        </div>
                     </div>  
-                    {props.playlist ? (
-                        <div>
-                            this is where eveything will be
-                        </div>
-                    ) : null }                                                 
+                        {props.playlist ? (
+                        <PlaylistTrack />
+                        ) : null }                                                 
+                    </div>
                 </div>
-            </div>
         </div>
     </li>
   )

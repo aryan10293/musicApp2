@@ -3,18 +3,12 @@ import { AsideLeft } from './AsideLeft'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet, faShare } from '@fortawesome/free-solid-svg-icons';
+import PlaylistTrack from './PlaylistTrack';
 import { FaCrown } from 'react-icons/fa';
 function TrendingPlay() {
     const [data,setData] = React.useState<any[]>()
-    const [isActive, setIsActive] = React.useState<boolean>(false)
-    const handleMouseOver = () => {
-        setIsActive(true);
-        
-    };
-
-    const handleMouseOut = () => {
-        setIsActive(false);
-    };
+    const [playlist, setPlaylist] = React.useState<any[]>()
+    
     React.useEffect(() => {
         const fetchData = async () => {
            try {
@@ -25,14 +19,32 @@ function TrendingPlay() {
 
                 if(response.ok){
                     const data = await response.json()
-                    console.log(data)
+                    setData(data.data)
                 }
             } catch (error) {
                 console.error(error) 
             }
         }
         fetchData()
-    })
+    }, [])
+    // React.useEffect(() => {
+    //     const fetchData = async () => {
+    //        try {
+    //             const response = await fetch(`https://blockchange-audius-discovery-01.bdnodes.net/v1/playlists/DOPRl?app_name=EXAMPLEAPP`, {
+    //                 method: 'GET',
+
+    //             });
+
+    //             if(response.ok){
+    //                 const data = await response.json()
+    //                 setData(data.data[0])
+    //             }
+    //         } catch (error) {
+    //             console.error(error) 
+    //         }
+    //     }
+    //     fetchData()
+    // }, [])
     const trendingStyle = {
         boxShadow: 'rgba(87, 170, 255, 0.35) 0px 2px 8px -2px',
         background: 'linear-gradient(315deg, rgb(87, 171, 255) 0%, rgb(205, 152, 255) 100%)',
@@ -42,6 +54,9 @@ function TrendingPlay() {
     // tghe onlyn thing im doing here is adding the className conditional im talkigfn about the li
 
     // make a simple component to accept the first 5 of the playlist
+    if(data){
+        console.log(data[0].id)
+    }
   return (
     <div className='flex'>
         <AsideLeft />
@@ -61,7 +76,7 @@ function TrendingPlay() {
                     <div>
                         {/* {you have to add a boolen to the p} */}
                         <div className='lebronjames flex-col'>
-                            <div className=' flex '>
+                            <div className='flex'>
                                 <div className='numberDiv flex flex-col'> 
                                     <FaCrown /> 
                                     1
@@ -105,13 +120,9 @@ function TrendingPlay() {
                                     </div>                                                    
                                 </div>    
                             </div> 
-                            <div className='playlist-track flex' onMouseOver={handleMouseOver}onMouseOut={handleMouseOut}>
-                                {isActive ? <img src={'https://tse2.mm.bing.net/th?id=OIP.X3OaS2xgmh60owB5jw2HhwHaGL&pid=Api&P=0&h=220'} alt="idk what im doing" className='empty-div bg-red-700'></img> : <span className='empty-div bg-white-700'></span>}
-                                <div className='flex justify-between'>
-                                    <div className='number'>1 <span>lebron james<span> by travis scott</span></span></div>
-                                    <div className='playlist-track-time'>4:23</div>
-                                </div>
-                            </div>                                                  
+                            <ol>
+
+                            </ol>                                                    
                         </div>
                         <div>
                         </div>   

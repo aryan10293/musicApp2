@@ -405,3 +405,18 @@ main section div p{
       box-shadow: 0 2px 5px #E3E3E3, 0 1px 0 rgba(133, 129, 153, 0.25), 0 0 1px rgba(133, 129, 153, .1);
       border: 1px solid #f2f4f2;
 }
+
+.playlist-song span{
+  margin-left: 5px;
+}
+
+.number, .playlist-track-time, .more-tracks{
+  font-size: 12px;
+  color: #858199;
+
+}
+.playlist-track{
+  border-top: solid .25px #a6a3b7;
+  border-bottom: solid .25px #a6a3b7;
+  padding: 10px;
+}
