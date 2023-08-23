@@ -3,7 +3,7 @@ import { AsideLeft } from './AsideLeft'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet, faShare } from '@fortawesome/free-solid-svg-icons';
-import PlaylistTrack from './PlaylistTrack';
+import Track from './Track';
 import { FaCrown } from 'react-icons/fa';
 function TrendingPlay() {
     const [data,setData] = React.useState<any[]>()
@@ -72,62 +72,21 @@ function TrendingPlay() {
                     <div>{'Top Five Playlist Each Week Win $Audio'.toLocaleUpperCase()}</div>
                     <div>LEARN MORE -&gt;</div>
                 </div>
-                <li className={`li-track ${widthStyle}`}>
-                    <div>
-                        {/* {you have to add a boolen to the p} */}
-                        <div className='lebronjames flex-col'>
-                            <div className='flex'>
-                                <div className='numberDiv flex flex-col'> 
-                                    <FaCrown /> 
-                                    1
-                                </div>
-                                <div className='artwork-li'>
-                                    <div className='idkwhattocallthisdiv'>
-                                        <img src={'https://tse2.mm.bing.net/th?id=OIP.X3OaS2xgmh60owB5jw2HhwHaGL&pid=Api&P=0&h=220'} alt="idk what im doing" />
-                                    </div>
-                                </div>
-                                <div className="maintrackcontent">
-                                    <div className="timeofsong">    
-                                        <p>{'props.timeOfSong'}</p>
-                                    </div>
-                                    <div className='titleofsong'>
-                                        <Link to={'/props.artistLink'}>{'thegoat'}</Link>
-                                    </div>   
-                                    <div className='artistofsong'>
-                                        <Link to={'props.artistLink'}>{'lebron'}</Link>
-                                    </div>
-                                    <div className='dataofsong'>
-                                    <>
-                                        <div >
-                                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faRetweet} />   {123} Repost</span></div>
-                                            {' '}
-                                            <div className='heartreposticon'><span> <FontAwesomeIcon icon={faHeart} />   {123} Favorites </span></div>
-                                        </div>
-                                        <div>
-                                            <p>{123} Plays</p>
-                                        </div>
-                                    </>
-                                    </div>   
-                                    <div className='line'></div>   
-                                    <div className='activtybuttons'>
-                                        <FontAwesomeIcon icon={faRetweet}  className='icons'/>
-                                        {true ? (
-                                            <FontAwesomeIcon icon={faHeart}  data-id={123} className='icons liked'/>
-                                        ) : (
-                                        <FontAwesomeIcon icon={faHeart}   className='icons'/>
-                                        )}
-                                        <FontAwesomeIcon icon={faShare} className='icons'/>
-                                    </div>                                                    
-                                </div>    
-                            </div> 
-                            <ol>
-
-                            </ol>                                                    
-                        </div>
-                        <div>
-                        </div>   
-                    </div>
-                </li>
+                <Track 
+                    playlist={false}
+                    likes={[]}
+                    id={1312}
+                    number={1}
+                    crown={false}
+                    artwork={'https://th.bing.com/th/id/OIP.X95IL0tvdw_WZ4gQqTNpzAHaFS?w=264&h=189&c=7&r=0&o=5&dpr=2&pid=1.7'}
+                    timeOfSong={'3:26'}
+                    artistofsong={'lebron'}
+                    artistLink={'song.permalink'}
+                    repostCount={12}
+                    favoriteCount={15}
+                    plays={400}
+                    title={'song.title'}
+                />
             </main>
         </div>
     </div>

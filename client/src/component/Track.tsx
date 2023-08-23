@@ -33,7 +33,7 @@ function Track(props:any) {
         }
     }
  return (
-    <li className='li-track'>
+    <li className='li-track w-full'>
         <div>
             <div className='lebronjames flex-col'>
             <div className='numberDiv flex'> 
