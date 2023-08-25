@@ -80,7 +80,10 @@ function Track(props:any) {
                         </div>
                     </div>  
                         {props.playlist ? (
-                        <PlaylistTrack />
+                        <PlaylistTrack 
+                            playlistId={props.playlist}
+                        
+                        />
                         ) : null }                                                 
                     </div>
                 </div>

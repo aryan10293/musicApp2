@@ -54,9 +54,6 @@ function TrendingPlay() {
     // tghe onlyn thing im doing here is adding the className conditional im talkigfn about the li
 
     // make a simple component to accept the first 5 of the playlist
-    if(data){
-        console.log(data[0].id)
-    }
   return (
     <div className='flex'>
         <AsideLeft />
@@ -73,7 +70,7 @@ function TrendingPlay() {
                     <div>LEARN MORE -&gt;</div>
                 </div>
                 <Track 
-                    playlist={false}
+                    playlist={data ? data[0].id : false}
                     likes={[]}
                     id={1312}
                     number={1}
