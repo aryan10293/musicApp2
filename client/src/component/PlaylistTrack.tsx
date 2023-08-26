@@ -18,11 +18,21 @@ function PlaylistTrack(props: any) {
           }
 
           const data = await response.json();
-          setData(data.data)
           setPlaylistSongs(data.data[0].playlist_contents)
-          setArtwork(data.data[0].artwork['150x150'])
-          setPlaylistName(data.data[0].playlist_name)
-          setCreatorName(data.data[0].user.name)
+
+          console.log(data.data[0].playlist_contents)
+          const songDataPromises = playlistSongs.slice(0,5).map(async (song: any) => {
+            const response = await fetch(`https://blockchange-audius-discovery-01.bdnodes.net/v1/tracks/${song.track_id}?app_name=drejapp`, {
+              method: 'GET',
+            });
+            const data = await response.json();
+            return data.data;
+          })
+          const resolvedSongData = await Promise.all(songDataPromises);
+          setPlaylistSongs(resolvedSongData);
+          // setArtwork(data.data[0].artwork['150x150'])
+          // setPlaylistName(data.data[0].playlist_name)
+          // setCreatorName(data.data[0].user.name)
       } catch (error) {
         console.error(error)
       }
@@ -30,32 +40,22 @@ function PlaylistTrack(props: any) {
     fetchData()
   }, [])
 
+  // React.useEffect(() => {
+  //   const fetchData = 
+  // })
+
+  
+// if(data){
+//   console.log(playlistSongs)
+// }
+
+
   return (
     <>
       {data && data !== null ? (
-        playlistSongs.slice(0,5).map((song: any, i:number) => {
-          async function fetchData(){
-            try {
-              const response = await fetch(`https://blockchange-audius-discovery-01.bdnodes.net/v1/tracks/${song.track_id}?app_name=drejapp`, {
-              method: 'GET',
-            })
-              if (!response.ok) {
-                  throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-              }
-
-              const data = await response.json();
-              console.log(data)
-              // setData(data.data)
-              // setPlaylistSongs(data.data[0].playlist_contents)
-              // setArtwork(data.data[0].artwork['150x150'])
-              // setPlaylistName(data.data[0].playlist_name)
-              // setCreatorName(data.data[0].user.name)
-              // console.log(data.data[0])
-            } catch (error) {
-              console.error(error)
-            }
-          }
-          fetchData()
+        playlistSongs.slice(0,5).map(async( song: any, i:number) => {
+            
+    
           return (
             <div>lol</div>
           )
