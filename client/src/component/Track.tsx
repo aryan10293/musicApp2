@@ -32,9 +32,10 @@ function Track(props:any) {
             setUserLikes(newList)
         }
     }
+    let displayFlex = props.playlist ? 'flex flex-col' : null
  return (
-    <li className='li-track w-full'>
-        <div>
+    <li className={`li-track w-full `}>
+        <div className={`${displayFlex}`}>
             <div className='lebronjames flex-col'>
             <div className='numberDiv flex'> 
                 <div className="flex flex-col ml-2">
@@ -78,14 +79,12 @@ function Track(props:any) {
                             )}
                             <FontAwesomeIcon icon={faShare} className='icons'/>
                         </div>
-                    </div>  
-                        {props.playlist ? (
+                    </div>                                                 
+                    </div>
+                       {props.playlist ? (
                         <PlaylistTrack 
                             playlistId={props.playlist}
-                        
-                        />
-                        ) : null }                                                 
-                    </div>
+                         />) : null }  
                 </div>
         </div>
     </li>
