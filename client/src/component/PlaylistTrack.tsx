@@ -58,7 +58,7 @@ console.log(idk)
   return (
     <>
       {data && data !== null ? (
-        idk.slice(0,5).map(( song: any, i:number) => {
+        idk.slice(0,6).map(( song: any, i:number) => {
             
     
           return (
