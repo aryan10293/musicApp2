@@ -5,10 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faRetweet, faShare } from '@fortawesome/free-solid-svg-icons';
 import Track from './Track';
 import { FaCrown } from 'react-icons/fa';
+import { MdFavorite } from 'react-icons/md';
 function TrendingPlay() {
     const [data,setData] = React.useState<any[]>()
     const [playlist, setPlaylist] = React.useState<any[]>()
-    
+    const [playlistId, setPlaylistId] = React.useState<string>()
+    const [likes, setLikes] = React.useState<string[]>([])
+    const [isActiveWeek, setIsActiveWeek] = React.useState<boolean>(true);
     React.useEffect(() => {
         const fetchData = async () => {
            try {
@@ -20,13 +23,37 @@ function TrendingPlay() {
                 if(response.ok){
                     const data = await response.json()
                     setData(data.data)
+                    setPlaylistId(data.data.map((id:any):void => {
+                       return id.id
+                    }))
                 }
+                
             } catch (error) {
                 console.error(error) 
             }
         }
         fetchData()
     }, [])
+    React.useState(() => {
+        const fetchData = async() => {
+            try {
+                const response = await fetch(`http://localhost:2014/checkuser/${localStorage.getItem('loginUser')}`, {
+                    method: 'GET',
+                    credentials: 'include',
+                });
+
+                if(response.ok){
+                    const data = await response.json()
+                    setLikes(data[0].likes)
+                }
+            } catch (error) {
+                console.error(error) 
+            }
+        }
+
+        fetchData()
+    })
+    console.log(playlistId)
     // React.useEffect(() => {
     //     const fetchData = async () => {
     //        try {
@@ -69,21 +96,31 @@ function TrendingPlay() {
                     <div>{'Top Five Playlist Each Week Win $Audio'.toLocaleUpperCase()}</div>
                     <div>LEARN MORE -&gt;</div>
                 </div>
-                <Track 
-                    playlist={data ? data[0].id : false}
-                    likes={[]}
-                    id={1312}
-                    number={1}
-                    crown={false}
-                    artwork={'https://th.bing.com/th/id/OIP.X95IL0tvdw_WZ4gQqTNpzAHaFS?w=264&h=189&c=7&r=0&o=5&dpr=2&pid=1.7'}
-                    timeOfSong={'3:26'}
-                    artistofsong={'lebron'}
-                    artistLink={'song.permalink'}
-                    repostCount={12}
-                    favoriteCount={15}
-                    plays={400}
-                    title={'song.title'}
-                />
+                {data && data !== null ? (
+                    // keep trying to get the time from each playlist
+                    data.slice(0,12).map((song:any, i:number): JSX.Element => {
+                        let plays;
+                        if(song['play'] <= 999){
+                            plays = song['total_play_count']
+                        } else{
+                            plays = `${(song['total_play_count'] / 1000).toFixed(1)}K`
+                        }
+                        return <Track
+                            playlist={data ? song.id : false}
+                            likes={likes}
+                            id={song.id}
+                            number={i + 1}
+                            crown={isActiveWeek ? true : false}
+                            artwork={song.artwork["150x150"]}
+                            timeOfSong={123456}
+                            artistofsong={song.user.name}
+                            artistLink={song.permalink}
+                            repostCount={song.repost_count}
+                            favoriteCount={song.favorite_count}
+                            plays={plays}
+                            title={song.playlist_name} />;
+                    })
+                ) : null}
             </main>
         </div>
     </div>

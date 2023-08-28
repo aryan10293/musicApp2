@@ -7,9 +7,9 @@ function Dashboard() {
     const [isActiveWeek, setIsActiveWeek] = React.useState<boolean>(false);
     const [isActiveMonth, setIsActiveMonth] = React.useState<boolean>(false);
     const [isActiveAllTime, setIsActiveAllTime] = React.useState<boolean>(true);
+    const [likes, setLikes] = React.useState<string[]>([])
     const genre: boolean = true
     const isPlaylist: boolean = false
-    const [likes, setLikes] = React.useState<string[]>([])
     React.useState(() => {
         const fetchData = async() => {
             try {

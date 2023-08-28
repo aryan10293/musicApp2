@@ -38,7 +38,6 @@ function PlaylistTrack(props: any) {
     }
     fetchData()
   }, [])
-console.log(idk)
 //   function fetchData(){
 //     playlistSongs.slice(0,5).forEach(async (song: any) => {
 //       const response = await fetch(`https://blockchange-audius-discovery-01.bdnodes.net/v1/tracks/${song.track_id}?app_name=EXAMPLEAPP`, {
@@ -54,19 +53,22 @@ console.log(idk)
 //   }
 //   fetchData()
 // console.log(idk)
-
   return (
     <>
       {data && data !== null ? (
         idk.slice(0,5).map(( song: any, i:number) => {
-            
+            const seconds = song.asyncData.data.duration;
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+
+            const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     
           return (
-            <div className='playlist-track flex'>
+            <div  key={i} className='playlist-track flex'>
         {false ? <img src={`song.asyncData.data.artwork[]`} alt="playlist cover" className='empty-div bg-red-700'></img> : <span className='empty-div bg-white-700'></span>}
             <div className='flex justify-between playlist-song w-full'>
                 <div className='number '>{i + 1} <span>{song.asyncData.data.title}<span> by {song.asyncData.data.user.name}</span></span></div>
-                <div className='playlist-track-time mr-3 '>4:23 play tiem</div>
+                <div className='playlist-track-time mr-3 '>{formattedTime}</div>
             </div>
         </div>
           )
