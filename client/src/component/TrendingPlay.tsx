@@ -9,9 +9,10 @@ import { MdFavorite } from 'react-icons/md';
 function TrendingPlay() {
     const [data,setData] = React.useState<any[]>()
     const [playlist, setPlaylist] = React.useState<any[]>()
-    const [playlistId, setPlaylistId] = React.useState<string>()
+    const [playlistId, setPlaylistId] = React.useState<string[]>()
     const [likes, setLikes] = React.useState<string[]>([])
     const [isActiveWeek, setIsActiveWeek] = React.useState<boolean>(true);
+    let playlistTime = []
     React.useEffect(() => {
         const fetchData = async () => {
            try {
@@ -53,7 +54,19 @@ function TrendingPlay() {
 
         fetchData()
     })
-    console.log(playlistId)
+    async function getPlaylistTime(id: string){
+        let response = await fetch(`https://audius-discovery-2.altego.net/v1/playlists/${id}?app_name=EXAMPLEAPP`, {method: 'GET',});
+        let data = await response.json()
+        console.log(data.data[0])
+    }
+    if(playlistId !== undefined){
+        for(let i = 0; i<playlistId?.length; i++){
+
+
+            getPlaylistTime(playlistId[i])
+        }
+    }
+    //setPlaylistId(playlistId?.map((x: string): void))
     // React.useEffect(() => {
     //     const fetchData = async () => {
     //        try {
