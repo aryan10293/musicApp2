@@ -11,6 +11,7 @@ function Track(props:any) {
     const [playlistSongs,setPlaylistSongs] = React.useState<any[]>([])
     const [idk,setIdk] = React.useState<any[]>([])
     const [times, setTime] = React.useState<number[]>([])
+    const [loading, setLoading] = React.useState<boolean>(true)
     const handleClick = async (e: any) => {
         let id = e.currentTarget.dataset.id;
         console.log(id)
@@ -62,6 +63,7 @@ function Track(props:any) {
           )
             setIdk(songsWithAsyncData)
             setTime(timeIdk)
+            setLoading(false)
       } catch (error) {
         console.error(error)
       }
@@ -138,7 +140,7 @@ function Track(props:any) {
                             <div  key={i} className='playlist-track flex'>
                         {false ? <img src={`song.asyncData.data.artwork[]`} alt="playlist cover" className='empty-div bg-red-700'></img> : <span className='empty-div bg-white-700'></span>}
                             <div className='flex justify-between playlist-song w-full'>
-                                <div className='number '>{i + 1} <span>{song.asyncData.data.title}<span> by {song.asyncData.data.user.name}</span></span></div>
+                                <div className='number '>{i + 1} <span>{song.asyncData.data.title}<span>by {song.asyncData.data.user.name}</span></span></div>
                                 <div className='playlist-track-time mr-3 '>{formattedTime}</div>
                             </div>
                         </div>
@@ -146,6 +148,7 @@ function Track(props:any) {
                         })
                          ) : null }  
                 </div>
+                {!loading ? <Link className='more-tracks' to='idkyet'>{idk.length-5} More Tracks {'->'}</Link> : null}
         </div>
     </li>
   )
