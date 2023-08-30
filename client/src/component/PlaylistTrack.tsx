@@ -29,9 +29,6 @@ function PlaylistTrack(props: any) {
             })
           )
             setIdk(songsWithAsyncData)
-          // setArtwork(data.data[0].artwork['150x150'])
-          // setPlaylistName(data.data[0].playlist_name)
-          // setCreatorName(data.data[0].user.name)
       } catch (error) {
         console.error(error)
       }
