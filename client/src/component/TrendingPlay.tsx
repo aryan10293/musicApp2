@@ -57,7 +57,6 @@ function TrendingPlay() {
     async function getPlaylistTime(id: string){
         let response = await fetch(`https://audius-discovery-2.altego.net/v1/playlists/${id}?app_name=EXAMPLEAPP`, {method: 'GET',});
         let data = await response.json()
-        console.log(data.data[0])
     }
     if(playlistId !== undefined){
         for(let i = 0; i<playlistId?.length; i++){

@@ -10,8 +10,9 @@ function Track(props:any) {
     const [userLikes, setUserLikes] = React.useState<string[]>(props.likes)
     const [playlistSongs,setPlaylistSongs] = React.useState<any[]>([])
     const [idk,setIdk] = React.useState<any[]>([])
+    const [times, setTime] = React.useState<number[]>([])
     const handleClick = async (e: any) => {
-        let  id = e.currentTarget.dataset.id;
+        let id = e.currentTarget.dataset.id;
         console.log(id)
         const action: string = userLikes?.includes(id || '') ? 'unlike' : 'like';
         console.log(action)
@@ -38,6 +39,7 @@ function Track(props:any) {
     React.useEffect(() => {
     const fetchData = async () => {
       try {
+        let timeIdk: number[] = []
         const response = await fetch(`https://blockchange-audius-discovery-01.bdnodes.net/v1/playlists/${props.playlist}?app_name=drejapp`, {
           method: 'GET',
         })
@@ -49,13 +51,17 @@ function Track(props:any) {
           setPlaylistSongs(data.data[0].playlist_contents)
 
           const songsWithAsyncData = await Promise.all(
-            data.data[0].playlist_contents.map(async (song: any) => {
+            data.data[0].playlist_contents.map(async (song: any, i: number) => {
               const asyncDataResponse = await fetch(`https://blockchange-audius-discovery-01.bdnodes.net/v1/tracks/${song.track_id}??app_name=drejapp`);
-              const asyncData = await asyncDataResponse.json();
+              const asyncData = await asyncDataResponse.json()
+                if(i < 5){
+                 timeIdk.push(asyncData.data.duration)   
+                }
               return { asyncData };
             })
           )
             setIdk(songsWithAsyncData)
+            setTime(timeIdk)
       } catch (error) {
         console.error(error)
       }
@@ -63,6 +69,15 @@ function Track(props:any) {
     if(props.playlist) fetchData()
   }, [])
     let displayFlex = props.playlist ? 'flex flex-col' : null
+
+    function getTimeOfPlaylist(){
+       let totalSec: number =  times.reduce((a:any,b:any) => {return a + b}, 0)
+       const minutes = Math.floor(totalSec / 60);
+       const remainingSeconds = totalSec % 60;
+       const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        console.log(totalSec)
+       return formattedTime
+    }
  return (
     <li className={`li-track w-full `}>
         <div className={`${displayFlex}`}>
@@ -79,7 +94,7 @@ function Track(props:any) {
                     </div>
                     <div className="maintrackcontent">
                         <div className="timeofsong">    
-                            <p>{props.timeOfSong}</p>
+                            <p>{props.playlist ? getTimeOfPlaylist() :props.timeOfSong}</p>
                         </div>
                         <div className='titleofsong'>
                             <Link to={props.artistLink}>{props.title}</Link>
