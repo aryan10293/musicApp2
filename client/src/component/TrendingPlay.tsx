@@ -106,7 +106,7 @@ function TrendingPlay() {
                             artistId = {song.user.id}
                             title={song.playlist_name} />;
                     })
-                ) : null}
+                ) : <div>loading...</div>}
             </main>
         </div>
     </div>

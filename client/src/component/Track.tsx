@@ -101,7 +101,7 @@ function Track(props:any) {
                             <Link to={props.artistLink}>{props.title}</Link>
                         </div>   
                         <div className='artistofsong'>
-                            <Link to={props.artistLink}>{props.artistofsong}</Link>
+                            <Link to={`/artist/${props.artistId}`}>{props.artistofsong}</Link>
                         </div>
                         <div className='dataofsong'>
                         <>
