@@ -9,12 +9,17 @@ import HiphopDisplay from './pages/HiphopDisplay';
 import AlternativeDisplay from './pages/AlternativeDisplay';
 import ExploreDisplay from './pages/ExploreDisplay';
 import TredningPlaylistDisp from './pages/TredningPlaylistDisp';
+import ArtistDisplay from './pages/ArtistDisplay';
 function App() {
   return (
       <Routes>
           <Route 
             path="/"
             element={ <LoginDisplay />  } />
+
+          <Route 
+            path="/artist/:id"
+            element={ <ArtistDisplay />  } />
 
           <Route 
             path="/register"

@@ -77,7 +77,6 @@ function Track(props:any) {
        const minutes = Math.floor(totalSec / 60);
        const remainingSeconds = totalSec % 60;
        const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-        console.log(totalSec)
        return formattedTime
     }
  return (
@@ -140,7 +139,7 @@ function Track(props:any) {
                             <div  key={i} className='playlist-track flex'>
                         {false ? <img src={`song.asyncData.data.artwork[]`} alt="playlist cover" className='empty-div bg-red-700'></img> : <span className='empty-div bg-white-700'></span>}
                             <div className='flex justify-between playlist-song w-full'>
-                                <div className='number '>{i + 1} <span>{song.asyncData.data.title}<span>by {song.asyncData.data.user.name}</span></span></div>
+                                <div className='number '>{i + 1} <span>{song.asyncData.data.title}<span>by <Link to={`/artist/${song.asyncData.data.user.id}`}>{song.asyncData.data.user.name}</Link></span></span></div>
                                 <div className='playlist-track-time mr-3 '>{formattedTime}</div>
                             </div>
                         </div>

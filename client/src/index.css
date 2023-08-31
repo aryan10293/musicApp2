@@ -420,3 +420,20 @@ main section div p{
   border-bottom: solid .25px #a6a3b7;
   padding: 10px;
 }
+.trending-big-card{
+  border-radius: 8px;
+  height: 25%;
+  display: flex;
+  text-align: left;
+  flex-direction: column;
+  align-items: left;
+}
+.rewards{
+  justify-self: end;
+}
+.artist-img{
+  height: 45vh;
+  width: 100vw;
+  background-position: center;
+  background-repeat: no-repeat;
+}

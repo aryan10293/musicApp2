@@ -182,6 +182,7 @@ console.log(likes)
                                 favoriteCount={favorites}
                                 plays={plays}
                                 title={song.title}
+                                artistId = {song.user.id}
                             />                         
                         )
                     })

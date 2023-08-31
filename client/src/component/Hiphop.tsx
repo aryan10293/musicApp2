@@ -187,6 +187,7 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                                 favoriteCount={favorites}
                                 plays={plays}
                                 title={song.title}
+                                artistId = {song.user.id}
                             />                         
                         )
                     })

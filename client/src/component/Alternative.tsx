@@ -174,6 +174,7 @@ const isAllTimeActive = isActiveAllTime ? 'selected-time': null
                         let name = song.user.handle.split('').map((x:string) => x === '_' ? ' ': x).join('')
                         return (
                             <Track 
+                                artistId = {song.user.id}
                                 playlist={isPlaylist}
                                 likes={likes}
                                 id={song.id}

@@ -23,7 +23,7 @@ function Explore() {
                         <p className='text-grey-700'>Content curated for you based on your likes,reposts, and follows. Refreshes often so if you like a track, favorite it.</p>
                     </div>
 
-                   <Link to='trendingplaylist'> <section className='trending-big-card card ' style={trendingStyle}>
+                   <Link to='trendingplaylist'> <section className='trending-big-card  ' style={trendingStyle}>
                         <div>
                             <h2>Trending playlist</h2>
                             <p>The top playlist of Audius right now</p>

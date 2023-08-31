@@ -65,34 +65,7 @@ function TrendingPlay() {
             getPlaylistTime(playlistId[i])
         }
     }
-    //setPlaylistId(playlistId?.map((x: string): void))
-    // React.useEffect(() => {
-    //     const fetchData = async () => {
-    //        try {
-    //             const response = await fetch(`https://blockchange-audius-discovery-01.bdnodes.net/v1/playlists/DOPRl?app_name=EXAMPLEAPP`, {
-    //                 method: 'GET',
-
-    //             });
-
-    //             if(response.ok){
-    //                 const data = await response.json()
-    //                 setData(data.data[0])
-    //             }
-    //         } catch (error) {
-    //             console.error(error) 
-    //         }
-    //     }
-    //     fetchData()
-    // }, [])
-    const trendingStyle = {
-        boxShadow: 'rgba(87, 170, 255, 0.35) 0px 2px 8px -2px',
-        background: 'linear-gradient(315deg, rgb(87, 171, 255) 0%, rgb(205, 152, 255) 100%)',
-    };
-    let trendingplay = true
-    const widthStyle = trendingplay ? 'width-style' : null
-    // tghe onlyn thing im doing here is adding the className conditional im talkigfn about the li
-
-    // make a simple component to accept the first 5 of the playlist
+    console.log(data)
   return (
     <div className='flex'>
         <AsideLeft />
@@ -130,6 +103,7 @@ function TrendingPlay() {
                             repostCount={song.repost_count}
                             favoriteCount={song.favorite_count}
                             plays={plays}
+                            artistId = {song.user.id}
                             title={song.playlist_name} />;
                     })
                 ) : null}
