@@ -1,12 +1,12 @@
 import React from 'react'
-import { AsideLeft } from './AsideLeft'
+import Track from './Track'
 import { useParams } from 'react-router-dom';
-import { FaMusic, FaRetweet } from 'react-icons/fa';
-import { MdAlbum } from 'react-icons/md';
-import {  faRetweet } from '@fortawesome/free-solid-svg-icons'
+import { AsideLeft } from './AsideLeft';
 import { Link } from 'react-router-dom';
-import Track from './Track';
-function Artist() {
+import { FaMusic } from 'react-icons/fa';
+import { FaRetweet } from 'react-icons/fa';
+import { MdAlbum } from 'react-icons/md';
+function Albums() {
   const  id  = useParams().id;
   const [userData, setUserData] = React.useState<any>({})
   const [likes, setLikes] = React.useState<string[]>([])
@@ -155,4 +155,4 @@ function Artist() {
   )
 }
 
-export default Artist
+export default Albums

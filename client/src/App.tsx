@@ -10,6 +10,8 @@ import AlternativeDisplay from './pages/AlternativeDisplay';
 import ExploreDisplay from './pages/ExploreDisplay';
 import TredningPlaylistDisp from './pages/TredningPlaylistDisp';
 import ArtistDisplay from './pages/ArtistDisplay';
+import AlbumDisplay from './pages/AlbumDisplay';
+import PlaylistDisplay from './pages/PlaylistDisplay';
 function App() {
   return (
       <Routes>
@@ -20,6 +22,15 @@ function App() {
           <Route 
             path="/artist/:id"
             element={ <ArtistDisplay />  } />
+
+          <Route 
+            path="/artist/:id/albums"
+            element={ <AlbumDisplay />  } />
+
+
+          <Route 
+            path="/artist/:id/playlist"
+            element={ <PlaylistDisplay />  } />
 
           <Route 
             path="/register"
