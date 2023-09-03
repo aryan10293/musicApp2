@@ -75,7 +75,7 @@ function Artist() {
         </div>
         <div className="user-music-data">
           <ul>
-            <Link to ='' className='trending-li selected-li'>
+            <Link to ='' >
               <li>
                 <div><FaMusic size={20} color={'blue'}/></div>
                 <span>Tracks</span>

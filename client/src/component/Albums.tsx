@@ -33,6 +33,7 @@ function Albums() {
 
       if(response.ok){
         const data = await response.json()
+        console.log(data.data)
         setUserTracks(data.data)
       }
     }
@@ -75,7 +76,7 @@ function Albums() {
         </div>
         <div className="user-music-data">
           <ul>
-            <Link to ='' className='trending-li selected-li'>
+            <Link to =''>
               <li>
                 <div><FaMusic size={20} color={'blue'}/></div>
                 <span>Tracks</span>
@@ -102,53 +103,7 @@ function Albums() {
           </ul>
         </div>
         <main className='artist-content'>
-              {usertTracks && usertTracks !== null ? (
-                    // keep trying to get the time from each playlist
-                    usertTracks.map((song:any, i:number): JSX.Element => {
-                        let repost;
-                        let favorites;
-                        let plays;
-                        const seconds = song.duration;
-                        const minutes = Math.floor(seconds / 60);
-                        const remainingSeconds = seconds % 60;
-
-                        const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-                        if(i === 5){
-                            console.log(song)
-                        }
-                        if(song['repost_count'] <= 999){
-                            repost = song['repost_count']
-                        } else{
-                            repost = `${(song['repost_count'] / 1000).toFixed(2)}K`
-                        }
-
-                        if(song['favorite_count'] <= 999){
-                            favorites = song['favorite_count']
-                        } else{
-                            favorites = `${(song['favorite_count'] / 1000).toFixed(1)}K`
-                        }  
-
-                        if(song['play'] <= 999){
-                            plays = song['play_count']
-                        } else{
-                            plays = `${(song['play_count'] / 1000).toFixed(1)}K`
-                        }
-                        return <Track
-                            likes={likes}
-                            id={song.id}
-                            number={i + 1}
-                            crown={false}
-                            artwork={song.artwork["150x150"]}
-                            timeOfSong={formattedTime}
-                            artistofsong={song.user.name}
-                            artistLink={song.permalink}
-                            repostCount={repost}
-                            favoriteCount={favorites}
-                            plays={plays}
-                            artistId = {song.user.id}
-                            title={song.playlist_name} />;
-                    })
-                ) : <div>loading...</div>}
+              
         </main>
        </div>
     </div>
