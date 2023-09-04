@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import LoginDisplay from './pages/LoginDisplay';
-import RegisterDisplay from './pages/RegisterDisplay';
 import DashboardDisplay from './pages/DashboardDisplay';
 import ElectronicDisplay from './pages/ElectronicDisplay';
 import HiphopDisplay from './pages/HiphopDisplay';
@@ -16,9 +14,6 @@ import RepostDisplay from './pages/RepostDisplay';
 function App() {
   return (
       <Routes>
-          <Route 
-            path="/"
-            element={ <LoginDisplay />  } />
 
           <Route 
             path="/artist/:id"
@@ -37,12 +32,9 @@ function App() {
             path="/artist/:id/playlist"
             element={ <PlaylistDisplay />  } />
 
-          <Route 
-            path="/register"
-            element={ <RegisterDisplay />  } />
 
-            <Route
-              path="/dashboard"
+          <Route
+              path="/"
               element={<DashboardDisplay />} />
 
           <Route 
