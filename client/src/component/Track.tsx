@@ -98,7 +98,7 @@ function Track(props:any) {
                             <p>{props.playlist ? getTimeOfPlaylist() :props.timeOfSong}</p>
                         </div>
                         <div className='titleofsong'>
-                            <Link to={props.artistLink}>{props.title}</Link>
+                            <Link to={`/${props.artistofsong}/${props.id}`}>{props.title}</Link>
                         </div>   
                         <div className='artistofsong'>
                             <Link to={`/artist/${props.artistId}`}>{props.artistofsong}</Link>

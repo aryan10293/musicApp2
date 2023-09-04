@@ -47,14 +47,14 @@ export const AsideLeft = () => {
 
 
             <header className="flex font-bold text-blue-600 mx-5 my-4 text-xl xl:text-2xl header-aside">
-                <Link to="/dashboard" className="text-purple-600"> MelodyMingle </Link>
+                <Link to="/" className="text-purple-600"> MelodyMingle </Link>
             </header>
 
 
             <nav>
                 <ul className="px-2 mr-1">
                     <li >
-                        <NavLink to="/dashboard" className="flex py-4 gap-3 px-3 cursor-pointer hover:bg-slate-200 rounded-[15rem] active:bg-slate-100">
+                        <NavLink to="/" className="flex py-4 gap-3 px-3 cursor-pointer hover:bg-slate-200 rounded-[15rem] active:bg-slate-100">
                             {({ isActive }) => 
                                 isActive ? (
                                     <>
@@ -81,22 +81,6 @@ export const AsideLeft = () => {
                                     <>
                                         <MdOutlineExplore className="text-[1.6rem]"/>
                                         <h2 className="text-xl px-1 hidden xl:block"> Explore </h2>
-                                    </>
-                                )}
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to={`/`} onClick={handleLogout} className="flex py-4 gap-3 px-3 cursor-pointer hover:bg-slate-200 rounded-[15rem] active:bg-slate-100">
-                            {({ isActive }) => 
-                                isActive ? (
-                                    <>
-                                        <FaSignOutAlt className="text-[1.6rem] font-bold"/> 
-                                        <h2 className="text-xl px-1 hidden xl:block"> Logout </h2>
-                                    </>
-                                ) : (
-                                    <>
-                                        <FaSignOutAlt className="text-[1.6rem]"/>
-                                        <h2 className="text-xl px-1 hidden xl:block"> Logout </h2>
                                     </>
                                 )}
                         </NavLink>

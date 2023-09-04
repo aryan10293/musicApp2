@@ -11,6 +11,7 @@ import ArtistDisplay from './pages/ArtistDisplay';
 import AlbumDisplay from './pages/AlbumDisplay';
 import PlaylistDisplay from './pages/PlaylistDisplay';
 import RepostDisplay from './pages/RepostDisplay';
+import SongDisplay from './pages/SongDisplay';
 function App() {
   return (
       <Routes>
@@ -55,7 +56,11 @@ function App() {
 
           <Route 
           path="/explore/trendingplaylist"
-          element={ <TredningPlaylistDisp />  } />            
+          element={ <TredningPlaylistDisp />  } /> 
+          
+          <Route 
+          path="/:name/:id"
+          element={ <SongDisplay />  } /> 
       </Routes>
   );
 }

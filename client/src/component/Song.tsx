@@ -6,14 +6,14 @@ import { MdAlbum } from 'react-icons/md';
 import {  faRetweet } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import Track from './Track';
-function Artist() {
+function Song() {
   const  id  = useParams().id;
   const [userData, setUserData] = React.useState<any>({})
   const [likes, setLikes] = React.useState<string[]>([])
   const [usertTracks, setUserTracks] = React.useState<any>([])
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`https://audius-metadata-2.figment.io/v1/users/${id}?app_name=EXAMPLEAPP`, {
+      const response = await fetch(`https://audius-discovery-8.cultur3stake.com/v1/tracks/${id}?app_name=EXAMPLEAPP`, {
         method: 'GET'
       })
 
@@ -25,22 +25,9 @@ function Artist() {
     fetchData()
   }, [])
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`https://audius-metadata-2.figment.io/v1/users/${id}/tracks?app_name=EXAMPLEAPP`, {
-        method: 'GET'
-      })
-
-      if(response.ok){
-        const data = await response.json()
-        setUserTracks(data.data)
-      }
-    }
-    fetchData()
-  }, [])
    const containerStyle = {
 
-    backgroundImage: userData.cover_photo && userData.cover_photo['640x'] ? `url(${userData.cover_photo['640x']})` : `url(${'https://tse1.mm.bing.net/th?id=OIP.tsjL8meOsr0Inbkr9zi_yQHaFe&pid=Api&rs=1&c=1&qlt=95&w=151&h=111'})`,
+    backgroundImage: userData.artwork && userData.artwork['480x480'] ? `url(${userData.artwork['480x480']})` : `url(${'https://tse1.mm.bing.net/th?id=OIP.tsjL8meOsr0Inbkr9zi_yQHaFe&pid=Api&rs=1&c=1&qlt=95&w=151&h=111'})`,
     color: 'white',
     /* Other styles can go here */
   };
@@ -50,38 +37,19 @@ function Artist() {
        <AsideLeft />
        <div className='max-h-[100vh] overflow-y-auto'>
         <div className='artist-img' style={containerStyle}>
-            <div>
-              <p>Artist</p>
-              <h2>{userData.name}</h2>
-              <h3>@{userData.handle}</h3>
-            </div>
         </div>
-        <div className='user-info'>
-          <img src={userData.profile_picture && userData.profile_picture['150x150'] ? userData.profile_picture['150x150'] : 'https://tse1.mm.bing.net/th?id=OIP.tsjL8meOsr0Inbkr9zi_yQHaFe&pid=Api&rs=1&c=1&qlt=95&w=151&h=111'} className='profile-image' alt="idk" />
-          <ul>
-            <li>
-                <p>{userData.track_count}</p>
-              <h3>Tracks</h3>
-            </li>
-            <li>
-              <p>{userData.followee_count}</p>
-              <h3>Following</h3>
-            </li>
-            <li>
-              <p>{userData.follower_count}</p>
-              <h3>Followers</h3>
-            </li>
-          </ul>
+        <div className='song-info songdiv'>
+          <img src={userData.artwork && userData.artwork['150x150'] ? userData.artwork['150x150'] : 'https://tse1.mm.bing.net/th?id=OIP.tsjL8meOsr0Inbkr9zi_yQHaFe&pid=Api&rs=1&c=1&qlt=95&w=151&h=111'}  alt="idk" />
         </div>
         <div className="user-music-data">
           <ul>
-            <Link to ='' >
+            <Link to ={`/artist/${id}`} >
               <li>
                 <div><FaMusic size={20} color={'blue'}/></div>
                 <span>Tracks</span>
               </li>
             </Link>
-            <Link to='repost'>
+            <Link to={`/artist/${id}/repost/`}>
               <li>
                 <div><FaRetweet size={20} color={'blue'}/></div>
                 <span>Repost</span>
@@ -96,7 +64,7 @@ function Artist() {
                         let repost;
                         let favorites;
                         let plays;
-                        const seconds = song.duration;
+                        const seconds = song.item.duration;
                         const minutes = Math.floor(seconds / 60);
                         const remainingSeconds = seconds % 60;
 
@@ -105,42 +73,43 @@ function Artist() {
                             console.log(song)
                         }
                         if(song['repost_count'] <= 999){
-                            repost = song['repost_count']
+                            repost = song.item['repost_count']
                         } else{
-                            repost = `${(song['repost_count'] / 1000).toFixed(2)}K`
+                            repost = `${(song.item['repost_count'] / 1000).toFixed(2)}K`
                         }
 
                         if(song['favorite_count'] <= 999){
-                            favorites = song['favorite_count']
+                            favorites = song.item['favorite_count']
                         } else{
-                            favorites = `${(song['favorite_count'] / 1000).toFixed(1)}K`
+                            favorites = `${(song.item['favorite_count'] / 1000).toFixed(1)}K`
                         }  
 
                         if(song['play'] <= 999){
-                            plays = song['play_count']
+                            plays = song.item['play_count']
                         } else{
-                            plays = `${(song['play_count'] / 1000).toFixed(1)}K`
+                            plays = `${(song.item['play_count'] / 1000).toFixed(1)}K`
                         }
                         return <Track
                             likes={likes}
                             id={song.id}
                             number={i + 1}
                             crown={false}
-                            artwork={song.artwork["150x150"]}
+                            artwork={song.item.artwork["150x150"]}
                             timeOfSong={formattedTime}
-                            artistofsong={song.user.name}
-                            artistLink={song.permalink}
+                            artistofsong={song.item.user.name}
+                            artistLink={song.item.permalink}
                             repostCount={repost}
                             favoriteCount={favorites}
                             plays={plays}
-                            artistId = {song.user.id}
-                            title={song.title} />;
+                            artistId = {song.item.user.id}
+                            title={song.item.title} />;
                     })
-                ) : <div>loading...</div>}
+                )  :  <div>loading...</div>}
+                
         </main>
        </div>
     </div>
   )
 }
 
-export default Artist
+export default Song

@@ -463,22 +463,23 @@ aside{
   display: flex;
   margin-left: 5%;
 }
-.user-info ul li, .user-music-data ul li{
+.user-info ul li, .user-music-data ul li, .song-info ul li{
   margin-right: 20px;
 }
-.user-info, .user-music-data{
+.user-info, .user-music-data, .song-info{
   display: flex;
   justify-content: center;
   margin-left: -80px;
 }
-.profile-image {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+.songdiv {
+  width: 900px;
+  height: 500px;
+  border-radius: 4%;
   overflow: hidden;
-  margin-top: -100px;
+  margin-top: -200px;
+  margin-left: 80px;
 }
-.user-music-data ul{
+.user-music-data ul, .song-info ul{
   display: flex;
 }
 .user-music-data{
@@ -497,4 +498,11 @@ aside{
 .artist-content{
   background-color: #F3F0F7;
   padding: 10%;
+}
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: -100px;
 }

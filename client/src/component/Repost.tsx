@@ -82,18 +82,6 @@ function Repost() {
                 <span>Tracks</span>
               </li>
             </Link>
-            <Link to={`/artist/${id}/albums/`}>
-              <li>
-                <div><MdAlbum size={20} color={'blue'}/></div>
-                <span>Albums</span>
-              </li>
-            </Link>
-            <Link to={`/artist/${id}/playlist/`}>
-              <li>
-                <div><FaMusic size={20} color={'blue'}/></div>
-                <span>Playlist</span>
-              </li>
-            </Link>
             <Link to={`/artist/${id}/repost/`}>
               <li>
                 <div><FaRetweet size={20} color={'blue'}/></div>
@@ -147,9 +135,10 @@ function Repost() {
                             favoriteCount={favorites}
                             plays={plays}
                             artistId = {song.item.user.id}
-                            title={song.item.playlist_name} />;
+                            title={song.item.title} />;
                     })
-                ) : <div>loading...</div>}
+                )  : usertTracks.length === 0 ? <div>{userData.name} has 0 repost</div> : <div>loading...</div>}
+                
         </main>
        </div>
     </div>
