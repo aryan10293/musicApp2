@@ -33,6 +33,12 @@ function Song() {
     color: 'white',
     /* Other styles can go here */
   };
+  function formatSecondsToTime(seconds: number) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    return formattedTime;
+}
   if(userData) console.log(userData)
   return (
     <div className='flex'>
@@ -40,14 +46,15 @@ function Song() {
        <div className='max-h-[100vh] overflow-y-auto'>
             <div className='artist-img' style={containerStyle}></div>
             <div className=' songdiv '>
-                <div className='future future-img'>
+                <div className='flex'>
+                    <div className='future future-img'>
                     {/* fix this width of the img div */}
                     <img src={userData.artwork && userData.artwork['150x150'] ? userData.artwork['150x150'] : 'https://tse1.mm.bing.net/th?id=OIP.tsjL8meOsr0Inbkr9zi_yQHaFe&pid=Api&rs=1&c=1&qlt=95&w=151&h=111'} className='songImage' alt="idk" />
                 </div>
                 <div className='future'>
                     <h3>TRACK</h3>
-                    <h1>{userData ? userData.title : null}</h1>
-                    <h3>By <Link to='idkyetleavemealone'>{Object.keys(userData).length !== 0 ? userData.user.name : null}</Link></h3>
+                    <h1 className='song-title'>{userData ? userData.title : null}</h1>
+                    <h3 className='song-artist'>By <Link to='idkyetleavemealone'>{Object.keys(userData).length !== 0 ? userData.user.name : null}</Link></h3>
                     <div>
                         <div className='playbtn'>
                             <FaPlay className='inline-block' color='white'/>
@@ -68,7 +75,7 @@ function Song() {
                             <span>{Object.keys(userData).length !== 0 ? userData['favorite_count'] <= 999 ? `${userData['favorite_count']} Favorites` :`${(userData['favorite_count'] / 1000).toFixed(2)}K Favortites` : null}</span> 
                         </div>
                     </div>
-                    <div className='likerepostshare mt-20'>
+                    <div className='likerepostshare mt-8'>
                         <button>
                            <span><FontAwesomeIcon icon={faShare} /></span> Share
                         </button>
@@ -80,6 +87,26 @@ function Song() {
                         </button>
                     </div>
                     {/* <h3>{userData ? userData.play_count.toLocaleString() : null}</h3> */}
+                </div>
+                </div>
+                <div className="song-line"></div>
+                <div className='song-info'>
+                    <div className='dontknowwhattocallthisone'>
+                        <ul>
+                            <li>
+                                DURATION:{' '}{Object.keys(userData).length !== 0 ? formatSecondsToTime(userData.duration) : null}
+                            </li>
+                            <li>
+                                RELEASED: {' finish this stuuf right here'}{Object.keys(userData).length !== 0 ? userData.release_date : null}
+                            </li>
+                            <li>
+                                GENRE:{' '}{Object.keys(userData).length !== 0 ? userData.genre : null}
+                            </li>
+                            <li>
+                                MODD: {' '}{Object.keys(userData).length !== 0 ? userData.mood : null}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
              <main className='song-artist-content mt-20 h-40vh'>

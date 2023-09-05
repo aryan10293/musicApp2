@@ -477,7 +477,6 @@ aside{
   width: 70%;
   overflow: hidden;
   margin:  -200px 80px;
-  display: flex;
   background-color: white;
   position: absolute;
   top: 50;
@@ -529,7 +528,7 @@ aside{
   width: 40%;
 }
 .future img{
-  height: 70%;
+  height: 100%;
   width: 100%;
   border-radius: 8%;
 }
@@ -549,7 +548,7 @@ aside{
   background-color: #CC0FE0;
   padding: 10px 30px;
   display: inline-block;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 .stopthecount{
   color: #858199;
@@ -561,7 +560,7 @@ aside{
   color: #858199;
 }
 .repostandlike{
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .repost:hover, .like:hover{
   color: #CC0FE0;
@@ -585,4 +584,15 @@ aside{
   background-color: #CC0FE0;
   transition: color 0.3s;
   transform: scale(1.1);
+}
+.song-title{
+  margin: 10px 0;
+}
+.song-artist{
+  margin-bottom: 15px;
+}
+.song-line{
+  height: 1px;
+  background-color: #ceccd7;
+  margin: 0px 20px;
 }
