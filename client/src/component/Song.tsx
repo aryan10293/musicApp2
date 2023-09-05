@@ -3,10 +3,11 @@ import { AsideLeft } from './AsideLeft'
 import { useParams } from 'react-router-dom';
 import { FaMusic, FaRetweet } from 'react-icons/fa';
 import { MdAlbum } from 'react-icons/md';
-import {  faRetweet } from '@fortawesome/free-solid-svg-icons'
+import {  faHeart, faRetweet } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import Track from './Track';
 import { FaPlay } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Song() {
   const  id  = useParams().id;
   const [userData, setUserData] = React.useState<any>({})
@@ -39,17 +40,33 @@ function Song() {
        <div className='max-h-[100vh] overflow-y-auto'>
             <div className='artist-img' style={containerStyle}></div>
             <div className=' songdiv '>
-                <div className='future'>
+                <div className='future future-img'>
+                    {/* fix this width of the img div */}
                     <img src={userData.artwork && userData.artwork['150x150'] ? userData.artwork['150x150'] : 'https://tse1.mm.bing.net/th?id=OIP.tsjL8meOsr0Inbkr9zi_yQHaFe&pid=Api&rs=1&c=1&qlt=95&w=151&h=111'} className='songImage' alt="idk" />
                 </div>
                 <div className='future'>
                     <h3>TRACK</h3>
                     <h1>{userData ? userData.title : null}</h1>
-                    <h3>By <Link to='idkyetleavemealone'>{userData ? userData.user.name : null}</Link></h3>
-                    <div className='playbtn'>
-                        <FaPlay className='inline-block' color='white'/>
-                        {' '}
-                        Play
+                    <h3>By <Link to='idkyetleavemealone'>{Object.keys(userData).length !== 0 ? userData.user.name : null}</Link></h3>
+                    <div>
+                        <div className='playbtn'>
+                            <FaPlay className='inline-block' color='white'/>
+                            {' '}
+                            Play  
+                         </div>
+                        <span className='stopthecount'>{' '}{Object.keys(userData).length !== 0 ? userData.play_count.toLocaleString() : null} Plays</span>
+                    </div>
+                    <div className='repostandlike flex'>
+                        <div className='repost'>
+                            <FontAwesomeIcon icon={faRetweet} />
+                            {' '}
+                            <span>{Object.keys(userData).length !== 0 ? userData['repost_count'] <= 999 ? `${userData['repost_count']} Repost` :`${(userData['repost_count'] / 1000).toFixed(2)}K Repost` : null}</span>
+                        </div>
+                        <div className='like'>
+                           <FontAwesomeIcon icon={faHeart} />
+                           {' '}
+                            <span>{Object.keys(userData).length !== 0 ? userData['favorite_count'] <= 999 ? `${userData['favorite_count']} Favorites` :`${(userData['favorite_count'] / 1000).toFixed(2)}K Favortites` : null}</span> 
+                        </div>
                     </div>
                     {/* <h3>{userData ? userData.play_count.toLocaleString() : null}</h3> */}
                 </div>

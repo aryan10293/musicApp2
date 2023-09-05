@@ -538,7 +538,23 @@ aside{
 .playbtn{
   color: white;
   background-color: #CC0FE0;
-  padding: 10px;
-  display: inline;
-  margin-top: 200px;
+  padding: 10px 30px;
+  display: inline-block;
+  margin-top: 10px;
+}
+.stopthecount{
+  color: #858199;
+  font-size: 18px;
+}
+
+.repost, .like{
+  margin-right: 10px;
+  color: #858199;
+}
+.repostandlike{
+  margin-top: 10px;
+}
+.repost:hover, .like:hover{
+  color: #CC0FE0;
+  transition: color 0.3s;
 }
