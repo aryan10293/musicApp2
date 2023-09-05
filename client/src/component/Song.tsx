@@ -3,7 +3,7 @@ import { AsideLeft } from './AsideLeft'
 import { useParams } from 'react-router-dom';
 import { FaMusic, FaRetweet } from 'react-icons/fa';
 import { MdAlbum } from 'react-icons/md';
-import {  faHeart, faRetweet } from '@fortawesome/free-solid-svg-icons'
+import {  faHeart, faRetweet, faShare } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import Track from './Track';
 import { FaPlay } from 'react-icons/fa';
@@ -68,10 +68,21 @@ function Song() {
                             <span>{Object.keys(userData).length !== 0 ? userData['favorite_count'] <= 999 ? `${userData['favorite_count']} Favorites` :`${(userData['favorite_count'] / 1000).toFixed(2)}K Favortites` : null}</span> 
                         </div>
                     </div>
+                    <div className='likerepostshare mt-20'>
+                        <button>
+                           <span><FontAwesomeIcon icon={faShare} /></span> Share
+                        </button>
+                         <button>
+                           <span><FontAwesomeIcon icon={faRetweet} /></span> Repost
+                        </button>
+                         <button>
+                           <span><FontAwesomeIcon icon={faHeart} /></span> Favorite
+                        </button>
+                    </div>
                     {/* <h3>{userData ? userData.play_count.toLocaleString() : null}</h3> */}
                 </div>
             </div>
-             <main className='song-artist-content'>
+             <main className='song-artist-content mt-20 h-40vh'>
                 {usertTracks && usertTracks !== null ? (
                         // keep trying to get the time from each playlist
                         usertTracks.map((song:any, i:number): JSX.Element => {

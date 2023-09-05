@@ -474,10 +474,14 @@ aside{
 .songdiv {
   height: 500px;
   border-radius: 4%;
+  width: 70%;
   overflow: hidden;
   margin:  -200px 80px;
   display: flex;
   background-color: white;
+  position: absolute;
+  top: 50;
+  left: 70;
 }
 .user-music-data ul, .song-info ul{
   display: flex;
@@ -499,6 +503,9 @@ aside{
   background-color: #F3F0F7;
   padding: 10%;
 }
+.song-artist-content{
+  height: 50vh;
+}
 .profile-image {
   width: 200px;
   height: 200px;
@@ -514,13 +521,15 @@ aside{
   background-color: white;
 }
 .future{
-  width: 50%;
+  width: 70%;
   padding: 20px;
   text-align: left;
 }
-
+.future-img{
+  width: 40%;
+}
 .future img{
-  height: 90%;
+  height: 70%;
   width: 100%;
   border-radius: 8%;
 }
@@ -557,4 +566,23 @@ aside{
 .repost:hover, .like:hover{
   color: #CC0FE0;
   transition: color 0.3s;
+}
+
+.likerepostshare button{
+  margin-right: 15px;
+  border: #858199 1px solid;
+  padding: 10px 20px;
+  color:#858199;
+  border-radius: 8px;
+  
+}
+.likerepostshare button span{
+  margin-right: 5px;
+}
+
+.likerepostshare button:hover{
+  color: white;
+  background-color: #CC0FE0;
+  transition: color 0.3s;
+  transform: scale(1.1);
 }
