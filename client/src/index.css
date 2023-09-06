@@ -463,7 +463,7 @@ aside{
   display: flex;
   margin-left: 5%;
 }
-.user-info ul li, .user-music-data ul li, .song-info ul li{
+.user-info ul li, .user-music-data ul li, .song-info ul li .idontknowwhattocallthisone ul li{
   margin-right: 20px;
 }
 .user-info, .user-music-data, .song-info{
@@ -482,7 +482,7 @@ aside{
   top: 50;
   left: 70;
 }
-.user-music-data ul, .song-info ul{
+.user-music-data ul, .song-info ul .ugh-info .idontknowwhattocallthisone ul{
   display: flex;
 }
 .user-music-data{
@@ -595,4 +595,8 @@ aside{
   height: 1px;
   background-color: #ceccd7;
   margin: 0px 20px;
+}
+.dontknowwhattocallthisone ul{
+  padding: 10px 20px;
+  color: #CECDD6;
 }

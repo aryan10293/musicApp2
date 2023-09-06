@@ -38,7 +38,15 @@ function Song() {
     const remainingSeconds = seconds % 60;
     const formattedTime = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     return formattedTime;
-}
+  }
+
+  function relaseDateFormat(date:string){
+    let releaseDate = new Date(date)
+    let numberOfMonth = releaseDate.getMonth() + 1
+    let dayOfMonth = releaseDate.getDate()
+    let year = releaseDate.getFullYear().toString()
+    return `${numberOfMonth}/${dayOfMonth}/${year.slice(2)}`
+  }
   if(userData) console.log(userData)
   return (
     <div className='flex'>
@@ -90,22 +98,33 @@ function Song() {
                 </div>
                 </div>
                 <div className="song-line"></div>
-                <div className='song-info'>
+                <div className='ugh-info'>
                     <div className='dontknowwhattocallthisone'>
-                        <ul>
-                            <li>
+                        <ul className='flex'>
+                            <li className='mr-10'>
                                 DURATION:{' '}{Object.keys(userData).length !== 0 ? formatSecondsToTime(userData.duration) : null}
                             </li>
-                            <li>
-                                RELEASED: {' finish this stuuf right here'}{Object.keys(userData).length !== 0 ? userData.release_date : null}
+                            <li className='mr-10'>
+                                RELEASED: {' '}{Object.keys(userData).length !== 0 ? relaseDateFormat(userData.release_date) : null}
                             </li>
-                            <li>
+                            <li className='mr-10'>
                                 GENRE:{' '}{Object.keys(userData).length !== 0 ? userData.genre : null}
                             </li>
-                            <li>
+                            <li className='mr-10'>
                                 MODD: {' '}{Object.keys(userData).length !== 0 ? userData.mood : null}
                             </li>
                         </ul>
+                    </div>
+                    <div className="songdescription">
+                        <p>{Object.keys(userData).length !== 0 ? userData.description : null}</p>
+                    </div>
+                    <div className="songdownload">
+                        <button>
+                            download something
+                        </button>
+                        <button>
+                            download something
+                        </button>
                     </div>
                 </div>
             </div>
