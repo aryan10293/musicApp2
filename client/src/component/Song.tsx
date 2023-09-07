@@ -31,7 +31,7 @@ function Song() {
 
   React.useEffect(() => {
     const fetchData = async () => {
-        const response = await fetch(`https://audius-discovery-8.cultur3stake.com/v1/users/nlGNe/tracks?app_name=EXAMPLEAPP`, {
+        const response = await fetch(`https://audius-discovery-8.cultur3stake.com/v1/users/${userData.user.id}/tracks?app_name=EXAMPLEAPP`, {
             method: 'GET'
         })
 
@@ -40,8 +40,8 @@ function Song() {
             setUserTracks(data.data)
         }
     }
-    fetchData()
-  }, [])
+    if(Object.keys(userData).length !== 0) fetchData()
+  }, [userData])
 
    const containerStyle = {
 
@@ -63,11 +63,11 @@ function Song() {
     let year = releaseDate.getFullYear().toString()
     return `${numberOfMonth}/${dayOfMonth}/${year.slice(2)}`
   }
-  if(usertTracks) console.log(usertTracks)
+  if(userData) console.log(userData)
   return (
     <div className='flex'>
        <AsideLeft />
-       <div className='max-h-[100vh]'>
+       <div className='max-h-[100vh] overflow-auto '>
             <div className='artist-img' style={containerStyle}></div>
             <div className=' songdiv '>
                 <div className='flex'>
@@ -127,7 +127,7 @@ function Song() {
                                 GENRE:{' '}{Object.keys(userData).length !== 0 ? userData.genre : null}
                             </li>
                             <li className='mr-10'>
-                                MODD: {' '}{Object.keys(userData).length !== 0 ? userData.mood : null}
+                                MOOD: {' '}{Object.keys(userData).length !== 0 ? userData.mood : null}
                             </li>
                         </ul>
                     </div>
@@ -144,8 +144,12 @@ function Song() {
                     </div>
                 </div>
             </div>
-             <main className='song-artist-content mt-20 h-70vh overflow-y-auto'>
-                {usertTracks && usertTracks !== null ? (
+            {/* overflow-y-auto */}
+             <main className='song-artist-content mt-20 '>
+
+                <h2 >{`more by ${Object.keys(userData).length !== 0 ? userData.user.name : null}`.toLocaleUpperCase()}</h2>
+                <ul className='listofsongs'>
+                    {usertTracks && usertTracks !== null ? (
                         // keep trying to get the time from each playlist
                         usertTracks.map((song:any, i:number): JSX.Element => {
                             let repost;
@@ -192,6 +196,7 @@ function Song() {
                                 title={song.title} />;
                         })
                     )  :  <div>loading...</div>}
+                </ul>
                     
             </main>
         </div>
