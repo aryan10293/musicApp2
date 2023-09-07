@@ -151,7 +151,7 @@ function Song() {
                 <ul className='listofsongs'>
                     {usertTracks && usertTracks !== null ? (
                         // keep trying to get the time from each playlist
-                        usertTracks.map((song:any, i:number): JSX.Element => {
+                        usertTracks.slice(0,5).map((song:any, i:number): JSX.Element => {
                             let repost;
                             let favorites;
                             let plays;
