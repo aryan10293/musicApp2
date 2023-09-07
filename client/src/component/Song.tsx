@@ -8,11 +8,13 @@ import { Link } from 'react-router-dom';
 import Track from './Track';
 import { FaPlay } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 function Song() {
   const  id  = useParams().id;
   const [userData, setUserData] = React.useState<any>({})
   const [likes, setLikes] = React.useState<string[]>([])
   const [usertTracks, setUserTracks] = React.useState<any>([])
+  //https://audius-discovery-8.cultur3stake.com/v1/users/nlGNe/tracks?app_name=EXAMPLEAPP
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`https://audius-discovery-8.cultur3stake.com/v1/tracks/${id}?app_name=EXAMPLEAPP`, {
@@ -23,6 +25,20 @@ function Song() {
         const data = await response.json()
         setUserData(data.data)
       }
+    }
+    fetchData()
+  }, [])
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+        const response = await fetch(`https://audius-discovery-8.cultur3stake.com/v1/users/nlGNe/tracks?app_name=EXAMPLEAPP`, {
+            method: 'GET'
+        })
+
+        if(response.ok){
+            const data = await response.json()
+            setUserTracks(data.data)
+        }
     }
     fetchData()
   }, [])
@@ -47,11 +63,11 @@ function Song() {
     let year = releaseDate.getFullYear().toString()
     return `${numberOfMonth}/${dayOfMonth}/${year.slice(2)}`
   }
-  if(userData) console.log(userData)
+  if(usertTracks) console.log(usertTracks)
   return (
     <div className='flex'>
        <AsideLeft />
-       <div className='max-h-[100vh] overflow-y-auto'>
+       <div className='max-h-[100vh]'>
             <div className='artist-img' style={containerStyle}></div>
             <div className=' songdiv '>
                 <div className='flex'>
@@ -120,22 +136,22 @@ function Song() {
                     </div>
                     <div className="songdownload">
                         <button>
-                            download something
+                            <span><FontAwesomeIcon icon={faDownload} /></span> DOWNLOAD ORGINIAL
                         </button>
                         <button>
-                            download something
+                            <span><FontAwesomeIcon icon={faDownload} /></span> {'Download Lead Vocals / A Capella'.toUpperCase()}
                         </button>
                     </div>
                 </div>
             </div>
-             <main className='song-artist-content mt-20 h-40vh'>
+             <main className='song-artist-content mt-20 h-70vh overflow-y-auto'>
                 {usertTracks && usertTracks !== null ? (
                         // keep trying to get the time from each playlist
                         usertTracks.map((song:any, i:number): JSX.Element => {
                             let repost;
                             let favorites;
                             let plays;
-                            const seconds = song.item.duration;
+                            const seconds = song.duration;
                             const minutes = Math.floor(seconds / 60);
                             const remainingSeconds = seconds % 60;
 
@@ -144,36 +160,36 @@ function Song() {
                                 console.log(song)
                             }
                             if(song['repost_count'] <= 999){
-                                repost = song.item['repost_count']
+                                repost = song['repost_count']
                             } else{
-                                repost = `${(song.item['repost_count'] / 1000).toFixed(2)}K`
+                                repost = `${(song['repost_count'] / 1000).toFixed(2)}K`
                             }
 
                             if(song['favorite_count'] <= 999){
-                                favorites = song.item['favorite_count']
+                                favorites = song['favorite_count']
                             } else{
-                                favorites = `${(song.item['favorite_count'] / 1000).toFixed(1)}K`
+                                favorites = `${(song['favorite_count'] / 1000).toFixed(1)}K`
                             }  
 
                             if(song['play'] <= 999){
-                                plays = song.item['play_count']
+                                plays = song['play_count']
                             } else{
-                                plays = `${(song.item['play_count'] / 1000).toFixed(1)}K`
+                                plays = `${(song['play_count'] / 1000).toFixed(1)}K`
                             }
                             return <Track
                                 likes={likes}
                                 id={song.id}
                                 number={i + 1}
                                 crown={false}
-                                artwork={song.item.artwork["150x150"]}
+                                artwork={song.artwork["150x150"]}
                                 timeOfSong={formattedTime}
-                                artistofsong={song.item.user.name}
-                                artistLink={song.item.permalink}
+                                artistofsong={song.user.name}
+                                artistLink={song.permalink}
                                 repostCount={repost}
                                 favoriteCount={favorites}
                                 plays={plays}
-                                artistId = {song.item.user.id}
-                                title={song.item.title} />;
+                                artistId = {song.user.id}
+                                title={song.title} />;
                         })
                     )  :  <div>loading...</div>}
                     

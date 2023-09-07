@@ -600,3 +600,22 @@ aside{
   padding: 10px 20px;
   color: #CECDD6;
 }
+.songdescription, .songdownload{
+  text-align: left;
+  padding: 5px 20px;
+  font-size: 15px;
+  color: #CECDD6;
+}
+.songdownload button{
+  border: #c2c0cc solid 1px;
+  padding: 3px 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.songdownload{
+  margin-bottom: 10px;
+}
+.songdownload button:hover{
+  transform: scale(1.05);
+  transition: color 0.3s;
+}
