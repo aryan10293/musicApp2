@@ -78,7 +78,7 @@ function Song() {
                 <div className='future'>
                     <h3>TRACK</h3>
                     <h1 className='song-title'>{userData ? userData.title : null}</h1>
-                    <h3 className='song-artist'>By <Link to='idkyetleavemealone'>{Object.keys(userData).length !== 0 ? userData.user.name : null}</Link></h3>
+                    <h3 className='song-artist'>By <Link to={`/artist/${Object.keys(userData).length !== 0 ? userData.user.id : null}`}>{Object.keys(userData).length !== 0 ? userData.user.name : null}</Link></h3>
                     <div>
                         <div className='playbtn'>
                             <FaPlay className='inline-block' color='white'/>
