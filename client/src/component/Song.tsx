@@ -82,7 +82,7 @@ function Song() {
                     <div>
                         <div className='playbtn'>
                             <FaPlay className='inline-block' color='white'/>
-                            {''}
+                            {' '}
                             Play  
                          </div>
                         <span className='stopthecount'>{' '}{Object.keys(userData).length !== 0 ? userData.play_count.toLocaleString() : null} Plays</span>
